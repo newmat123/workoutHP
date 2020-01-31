@@ -1,0 +1,114 @@
+* {
+  box-sizing: border-box;
+}
+
+
+body {
+  background-color: #4F4E4E;
+  margin: 0;
+}
+
+
+/* Style the header */
+.header {
+  background-color: #9C9D9C;
+  text-align: center;
+}
+.header img
+{
+  display: center;
+  max-width: 100%;
+  height: auto;
+}
+
+
+/* Style the top navigation bar */
+.topnav {
+  overflow: hidden;
+  background-color: #333;
+}
+
+
+/* Style the topnav links */
+.topnav a {
+  float: left;
+  display: block;
+  color: #f2f2f2;
+  text-align: center;
+  padding: 14px 16px;
+  text-decoration: none;
+  border-radius: 10px;
+}
+
+
+/* Change color on hover */
+.topnav a:hover {
+  background-color: #ddd;
+  color: black;
+}
+
+
+.row {
+  background-color: #4F4E4E;
+}
+
+
+/* Create three unequal columns that floats next to each other */
+.column {
+  float: left;
+  padding: 10px;
+}
+
+
+/* Left and right column */
+.column.side {
+  width: 25%;
+  border-right: solid #333;
+}
+
+
+/* Middle column */
+.column.middle {
+  width: 50%;
+}
+
+
+/* Clear floats after the columns */
+.row:after {
+  content: "";
+  display: table;
+  clear: both;
+}
+
+
+/* Responsive layout - makes the three columns stack on top of each other instead of next to each other */
+@media screen and (max-width: 600px) {
+  .column.side, .column.middle {
+    width: 100%;
+  }
+}
+
+
+/* Style the footer */
+.footer {
+  position: absolute;
+  margin-top: 100%;
+  width: 100%;
+  padding: 50px;
+  text-align: center;
+  background-color: #9C9D9C;
+}
+
+
+.muscelgroups {
+  float: none;
+  display: block;
+  color: #f2f2f2;
+  text-align: center;
+  padding: 14px 16px;
+  text-decoration: none;
+  border-radius: 10px;
+}
+.muscelgroups:hover {
+  background-color: #333;
+}
