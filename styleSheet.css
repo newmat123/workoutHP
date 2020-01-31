@@ -64,6 +64,7 @@ body {
 .column.side {
   width: 25%;
   border-right: solid #333;
+  height: 700px;
 }
 
 
@@ -92,9 +93,8 @@ body {
 /* Style the footer */
 .footer {
   position: absolute;
-  margin-top: 100%;
   width: 100%;
-  padding: 50px;
+  padding: 25px;
   text-align: center;
   background-color: #9C9D9C;
 }
