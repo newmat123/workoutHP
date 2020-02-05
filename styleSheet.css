@@ -26,6 +26,7 @@ body {
 .topnav {
   overflow: hidden;
   background-color: #333;
+  height: 5px;
 }
 
 
@@ -113,4 +114,5 @@ body {
 }
 .muscelgroups:hover {
   background-color: #333;
+  cursor: pointer;
 }
