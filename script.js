@@ -13,120 +13,107 @@
 //root
 //http://wger.de/api/v2/
 
-
-function getApi(){
-  var request = new XMLHttpRequest();
-
-  request.onload = function () {
-
-    // Begin accessing JSON data here
-    var data = JSON.parse(this.response);
-    alert(data);
-    //alert(data);
-
-    if (request.status >= 200 && request.status < 400) {
-      data.forEach(results => {
-        alert(data);
+var muscleGroup;
 
 
-        const card = document.createElement('div');
-        card.setAttribute('class', 'card');
-
-        const h1 = document.createElement('h1');
-        h1.textContent = results.name;
-
-        const p = document.createElement('p');
-        results.description = results.description.substring(0, 300);
-        p.textContent = `${results.description}...`;
-
-        container.appendChild(card);
-        card.appendChild(h1);
-        card.appendChild(p);
-
-      });
-    } else {
-      const errorMessage = document.createElement('marquee');
-      errorMessage.textContent = `Gah, it's not working!`;
-      app.appendChild(errorMessage);
-    }
-  }
-
-  request.open('GET', 'http://wger.de/api/v2/exerciseinfo/', true);
-  request.setRequestHeader("Content-type", "application/json");
-  request.send();
-}
-
-
-
-const app = document.getElementById('root');
+const catHolder = document.getElementById('categories');
+const main = document.getElementById('root');
 
 const container = document.createElement('div');
 container.setAttribute('class', 'container');
 
-app.appendChild(container);
+main.appendChild(container);
 
 
 
-getApi();
-
-
-
-
-
+const apiUrl_exsersice = 'http://wger.de/api/v2/exercise/'
+const exsersiceCategoriUrl = 'http://wger.de/api/v2/exercisecategory/'
 
 
 
 
+//card example
+const card = document.createElement('div');
+card.setAttribute('class', 'card');
+
+const h1 = document.createElement('h1');
+h1.textContent = 'exsersice.name';
+
+const p = document.createElement('p');
+p.textContent = `tgrjyhtbgdrtyjhdgdsxnnnnnnnnnnnbbbbbbbbbbbbbtgrjyhtbgdrtyjhdgdsxnnnnnnnnnnnbbbbbbbbbbbbbtgrjyhtbgdrtyjhdgdsxnnnnnnnnnnnbbbbbbbbbbbbbtgrjyhtbgdrtyjhdgdsxnnnnnnnnnnnbbbbbbbbbbbbbtgrjyhtbgdrtyjhdgdsxnnnnnnnnnnnbbbbbbbbbbbbb...`;
+
+const imge = document.createElement('img');
+imge.setAttribute('class', 'cardImg');
+imge.setAttribute('src', 'imges/Hammer-Curls.jpg');
+
+container.appendChild(card);
+card.appendChild(h1);
+card.appendChild(p);
+card.appendChild(imge);
 
 
-//function UserAction() {
-//    var xhttp = new XMLHttpRequest();
-//    xhttp.onreadystatechange = function() {
-//         if (this.readyState == 4 && this.status == 200) {
-//             alert(this.response);
-//         }
-//    };
-//    xhttp.open("get", "http://wger.de/api/v2/exerciseinfo/?format=api&APPID=4cb44547e51e4695b6a73b9e1a60c3ffbe5c4989", true);
-//    xhttp.setRequestHeader("Content-type", "application/json");
-//    xhttp.send();
-//}
 
 
 
+async function categories() {
+  const response = await fetch(exsersiceCategoriUrl);
+  const data = await response.json();
+  const {results} = data;
 
-//const app = document.getElementById('root');
+  results.forEach(cats => {
+    const element = document.createElement('div');
+    element.setAttribute('class', 'muscelgroups')
+    element.setAttribute('onclick', 'defineMuscle('+cats.id+')');
+    element.innerHTML = cats.name;
 
-//const container = document.createElement('div');
-//container.setAttribute('class', 'container');
+    catHolder.appendChild(element);
 
-//app.appendChild(container);
+  });
+}
 
-//var request = new XMLHttpRequest();
-//request.open('GET', 'https://ghibliapi.herokuapp.com/films', true);
-//request.onload = function () {
 
-  // Begin accessing JSON data here
-//  var data = JSON.parse(this.response);
-//  if (request.status >= 200 && request.status < 400) {
-//    data.forEach(movie => {
-//      const card = document.createElement('div');
-//      card.setAttribute('class', 'card');
 
-//      const h1 = document.createElement('h1');
-//      h1.textContent = movie.title;
+async function processApi(url) {
+  const response = await fetch(url);
+  const data = await response.json();
+  const {results} = data;
 
-//      const p = document.createElement('p');
-//      movie.description = movie.description.substring(0, 300);
-//      p.textContent = `${movie.description}...`;
+  results.forEach(exsersice => {
+    if(exsersice.name_original != "" && exsersice.category == muscleGroup && exsersice.language == 2){
+      const card = document.createElement('div');
+      card.setAttribute('class', 'card');
 
-//      container.appendChild(card);
-//      card.appendChild(h1);
-//      card.appendChild(p);
-//    });
-//  } else {
-//    const errorMessage = document.createElement('marquee');
-//    errorMessage.textContent = `Gah, it's not working!`;
-//  }
-//}
+      const h1 = document.createElement('h1');
+      h1.innerHTML = exsersice.name_original;
 
-//request.send();
+      const p = document.createElement('p');
+      exsersice.description = exsersice.description.substring(0, 300);
+      p.innerHTML = `${exsersice.description}`;
+
+      const imge = document.createElement('img');
+      imge.setAttribute('class', 'cardImg');
+      imge.setAttribute('src', 'imges/Hammer-Curls.jpg');
+
+      container.appendChild(card);
+      card.appendChild(h1);
+      card.appendChild(p);
+      card.appendChild(imge);
+    }
+  });
+  if(data.next != null){
+    processApi(data.next);
+  }
+}
+
+
+function defineMuscle(i) {
+  if(i != muscleGroup){
+    container.innerHTML = "";
+    muscleGroup = i;
+    processApi(apiUrl_exsersice);
+
+  }
+}
+
+
+categories();

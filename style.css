@@ -127,6 +127,10 @@ h1 {
   color: white;
 }
 
+p {
+  padding: 10px;
+}
+
 #root {
   max-width: 1200px;
   margin: 0 auto;
@@ -165,4 +169,8 @@ h1 {
 
 .card h1 {
   background-image: linear-gradient(120deg, #84fab0 0%, #8fd3f4 100%);
+}
+
+.cardImg {
+  max-width: 100%;
 }
