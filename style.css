@@ -65,18 +65,6 @@ body {
 }
 
 
-
-/* Style the footer */
-.footer {
-  position: absolute;
-  width: 100%;
-  padding: 25px;
-  text-align: center;
-  background-color: #9C9D9C;
-}
-
-
-
 /*the cards*/
 h1 {
   text-align: center;

@@ -15,7 +15,6 @@
 
 var muscleGroup;
 
-var dataSet = {};
 
 const catHolder = document.getElementById('categories');
 const main = document.getElementById('root');
@@ -24,7 +23,6 @@ const container = document.createElement('div');
 container.setAttribute('class', 'container');
 
 main.appendChild(container);
-
 
 
 const apiUrl_exsersice = 'http://wger.de/api/v2/exercise/'
@@ -39,7 +37,7 @@ const h1 = document.createElement('h1');
 h1.textContent = 'exsersice.name';
 
 const p = document.createElement('p');
-p.textContent = `tgrjyhtbgdrtyjhdgdsxnnnnnnnnnnnbbbbbbbbbbbbbtgrjyhtbgdrtyjhdgdsxnnnnnnnnnnnbbbbbbbbbbbbbtgrjyhtbgdrtyjhdgdsxnnnnnnnnnnnbbbbbbbbbbbbbtgrjyhtbgdrtyjhdgdsxnnnnnnnnnnnbbbbbbbbbbbbbtgrjyhtbgdrtyjhdgdsxnnnnnnnnnnnbbbbbbbbbbbbb...`;
+p.textContent = `tgrjy htbgdrty jhdgdsx nnnnnn nnn nnbbbb bbbb bbbbbtgrj yhtbgd rtyjhdg dsxnnnnnnn nnnnbbbb bbbbbbbbbtgr jyhtbgdrty jhdgdsx nnnnnnn nnnnbbbbbb bbbbbbbtg rjyh tbgdrtyj hdgdsxnn nnnnnnnnnbb bbbb bbbbbbb tgrjyhtbg drtyjhdg dsxnn nnnnnnn nnbb bbbbb bbbbbb...`;
 
 const imge = document.createElement('img');
 imge.setAttribute('class', 'cardImg');
@@ -52,18 +50,6 @@ card.appendChild(imge);
 //card example
 
 
-async function fetchApi(url) {
-  const response = await fetch(url);
-  const data = await response.json();
-  dataSet = dataSet+data;
-
-  if(data.next != null){
-    fetchApi(data.next);
-  }else{
-    console.log(dataSet);
-  }
-}
-fetchApi(apiUrl_exsersice);
 
 async function categorys() {
   const response = await fetch(exsersiceCategoriUrl);
@@ -120,7 +106,6 @@ function defineMuscle(i) {
     container.innerHTML = "";
     muscleGroup = i;
     processApi(apiUrl_exsersice);
-
   }
 }
 
