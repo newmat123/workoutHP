@@ -15,6 +15,7 @@
 
 var muscleGroup;
 
+var dataSet = {};
 
 const catHolder = document.getElementById('categories');
 const main = document.getElementById('root');
@@ -28,8 +29,6 @@ main.appendChild(container);
 
 const apiUrl_exsersice = 'http://wger.de/api/v2/exercise/'
 const exsersiceCategoriUrl = 'http://wger.de/api/v2/exercisecategory/'
-
-
 
 
 //card example
@@ -50,12 +49,23 @@ container.appendChild(card);
 card.appendChild(h1);
 card.appendChild(p);
 card.appendChild(imge);
+//card example
 
 
+async function fetchApi(url) {
+  const response = await fetch(url);
+  const data = await response.json();
+  dataSet = dataSet+data;
 
+  if(data.next != null){
+    fetchApi(data.next);
+  }else{
+    console.log(dataSet);
+  }
+}
+fetchApi(apiUrl_exsersice);
 
-
-async function categories() {
+async function categorys() {
   const response = await fetch(exsersiceCategoriUrl);
   const data = await response.json();
   const {results} = data;
@@ -79,7 +89,7 @@ async function processApi(url) {
   const {results} = data;
 
   results.forEach(exsersice => {
-    if(exsersice.name_original != "" && exsersice.category == muscleGroup && exsersice.language == 2){
+    if(exsersice.name_original != "" && exsersice.description != "" && exsersice.category == muscleGroup && exsersice.language == 2){
       const card = document.createElement('div');
       card.setAttribute('class', 'card');
 
@@ -115,4 +125,4 @@ function defineMuscle(i) {
 }
 
 
-categories();
+categorys();
