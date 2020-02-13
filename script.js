@@ -87,7 +87,6 @@ async function processApi(url) {
       h1.innerHTML = exsersice.name_original;
 
       const p = document.createElement('p');
-      exsersice.description = exsersice.description.substring(0, 300);
       p.innerHTML = `${exsersice.description}`;
 
       const imge = document.createElement('img');
