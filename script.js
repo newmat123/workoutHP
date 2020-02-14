@@ -1,17 +1,4 @@
-//key  4cb44547e51e4695b6a73b9e1a60c3ffbe5c4989
-//exercise
-//exerciseinfo
-//exercisecategory
-//exercisecomment
-//exerciseimage
-  //"exerciseinfo": "http://wger.de/api/v2/exerciseinfo/",
-  //"exercise": "http://wger.de/api/v2/exercise/",
-  //"exercisecategory": "http://wger.de/api/v2/exercisecategory/",
-  //"exerciseimage": "http://wger.de/api/v2/exerciseimage/",
-  //"exercisecomment": "http://wger.de/api/v2/exercisecomment/",
-
-//root
-//http://wger.de/api/v2/
+//http://wger.de/en/software/api
 
 var muscleGroup;
 
@@ -25,8 +12,9 @@ container.setAttribute('class', 'container');
 main.appendChild(container);
 
 
-const apiUrl_exsersice = 'http://wger.de/api/v2/exercise/'
-const exsersiceCategoriUrl = 'http://wger.de/api/v2/exercisecategory/'
+const apiUrl_exsersice = 'http://wger.de/api/v2/exercise/';
+const apiUrl_img = 'http://wger.de/api/v2/exerciseimage/';
+const exsersiceCategoriUrl = 'http://wger.de/api/v2/exercisecategory/';
 
 
 //card example
@@ -58,7 +46,7 @@ async function categorys() {
 
   results.forEach(cats => {
     const element = document.createElement('div');
-    element.setAttribute('class', 'muscelgroups')
+    element.setAttribute('class', 'muscelgroups');
     element.setAttribute('onclick', 'defineMuscle('+cats.id+')');
     element.innerHTML = cats.name;
 
@@ -85,14 +73,28 @@ async function processApi(url) {
       const p = document.createElement('p');
       p.innerHTML = `${exsersice.description}`;
 
-      const imge = document.createElement('img');
-      imge.setAttribute('class', 'cardImg');
-      imge.setAttribute('src', 'imges/Hammer-Curls.jpg');
-
       container.appendChild(card);
       card.appendChild(h1);
       card.appendChild(p);
-      card.appendChild(imge);
+
+      async function getImg(url){
+        const response = await fetch(url);
+        const data = await response.json();
+        const {results} = data;
+        results.forEach(image => {
+          if(image.exercise == exsersice.id){
+            const imge = document.createElement('img');
+            imge.setAttribute('class', 'cardImg');
+            imge.setAttribute('src', image.image);
+
+            card.appendChild(imge);
+          }
+        });
+        if(data.next != null){
+          getImg(data.next);
+        }
+      }
+      getImg(apiUrl_img);
     }
   });
   if(data.next != null){
