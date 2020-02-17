@@ -21,10 +21,14 @@ const card = document.createElement('div');
 card.setAttribute('class', 'card');
 
 const h1 = document.createElement('h1');
-h1.textContent = 'exsersice.name';
+h1.innerHTML = 'exsersice.name';
 
 const p = document.createElement('p');
-p.textContent = `exsersice.discription`;
+p.innerHTML = `exsersice.discription`;
+
+const more = document.createElement('div');
+more.setAttribute('class', 'ReadMoreB');
+more.innerHTML = 'Klick read more';
 
 const imge = document.createElement('img');
 imge.setAttribute('class', 'cardImg');
@@ -34,6 +38,7 @@ Container.appendChild(card);
 card.appendChild(h1);
 card.appendChild(p);
 card.appendChild(imge);
+card.appendChild(more);
 //card example
 
 
@@ -76,11 +81,17 @@ async function processApi() {
       h1.innerHTML = exsersice.name_original;
 
       const p = document.createElement('p');
+      exsersice.description = exsersice.description.substring(0, 200)
       p.innerHTML = `${exsersice.description}`;
+
+      const more = document.createElement('div');
+      more.setAttribute('class', 'ReadMoreB');
+      more.innerHTML = 'Klick to read more';
 
       Container.appendChild(card);
       card.appendChild(h1);
       card.appendChild(p);
+      card.appendChild(more);
 
       //finder det tilhørende billede
       async function getImg(){

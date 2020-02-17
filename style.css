@@ -90,7 +90,7 @@ p {
 }
 
 .card {
-  margin: 1rem;
+  margin: 14px;
   background: white;
   box-shadow: 2px 4px 25px rgba(0, 0, 0, .1);
   border-radius: 12px;
@@ -105,13 +105,13 @@ p {
 
 @media screen and (min-width: 600px) {
   .card {
-    flex: 1 1 calc(50% - 2rem);
+    flex: 1 1 calc(50% - 28px);
   }
 }
 
 @media screen and (min-width: 900px) {
   .card {
-    flex: 1 1 calc(33% - 2rem);
+    flex: 1 1 calc(33% - 28px);
   }
 }
 
@@ -122,4 +122,9 @@ p {
 .cardImg {
   max-width: 100%;
   max-height: 200px;
+}
+
+.ReadMoreB {
+  text-align: center;
+  padding-bottom: 20px;
 }
