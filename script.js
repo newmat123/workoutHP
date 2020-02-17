@@ -3,6 +3,10 @@
 //muskel gruppen brugeren kigger på
 var MuscleGroup;
 
+//de forskellige dataset
+var DataExsesice = null;
+var DataImg = null;
+
 //rooten af apien
 const Url = 'https://wger.de/api/v2/';
 
@@ -40,6 +44,7 @@ card.appendChild(p);
 card.appendChild(imge);
 card.appendChild(more);
 //card example
+
 
 //henter dataen ned og retunere den
 async function fetchApi(url) {
@@ -105,17 +110,18 @@ function createCard(name, description, image, id) {
 
 //lopper iggennem den givne api
 async function processApi() {
-  //henter data
-  const data = await fetchApi(Url+'exercise/');
-  const imgdata = await fetchApi(Url+'exerciseimage/');
-
+  //henter data hvis den ikke allerede er hentet
+  if(DataExsesice == null || DataImg == null){
+    DataExsesice = await fetchApi(Url+'exercise/');
+    DataImg = await fetchApi(Url+'exerciseimage/');
+  }
   //looper gennem alle resultaterne
-  data.results.forEach(exsersice => {
+  DataExsesice.results.forEach(exsersice => {
     //tjækker om der er fyld på, om det er den rigtige kattegori og om det er på engelsk
     if(exsersice.description != "" && exsersice.category == MuscleGroup){
       var imgs = [];
       //finder det tilhørende billede
-      imgdata.results.forEach(image => {
+      DataImg.results.forEach(image => {
         if(image.exercise == exsersice.id){
           imgs.push(image.image);
         }
