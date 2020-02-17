@@ -16,11 +16,6 @@ Container.setAttribute('class', 'container');
 Main.appendChild(Container);
 
 
-
-
-
-
-
 //card example
 const card = document.createElement('div');
 card.setAttribute('class', 'card');
@@ -29,7 +24,7 @@ const h1 = document.createElement('h1');
 h1.textContent = 'exsersice.name';
 
 const p = document.createElement('p');
-p.textContent = `tgrjy htbgdrty jhdgdsx nnnnnn nnn nnbbbb bbbb bbbbbtgrj yhtbgd rtyjhdg dsxnnnnnnn nnnnbbbb bbbbbbbbbtgr jyhtbgdrty jhdgdsx nnnnnnn nnnnbbbbbb bbbbbbbtg rjyh tbgdrtyj hdgdsxnn nnnnnnnnnbb bbbb bbbbbbb tgrjyhtbg drtyjhdg dsxnn nnnnnnn nnbb bbbbb bbbbbb...`;
+p.textContent = `exsersice.discription`;
 
 const imge = document.createElement('img');
 imge.setAttribute('class', 'cardImg');
@@ -42,15 +37,17 @@ card.appendChild(imge);
 //card example
 
 
-
-
-
+async function fetchApi(url) {
+  //henter data
+  const response = await fetch(url+'?limit=200000&language=2&status=2');
+  const data = await response.json();
+  return data;
+}
 
 //henter de forskellige kategorier
 async function categorys() {
 
-  const response = await fetch(Url + 'exercisecategory/');
-  const data = await response.json();
+  const data = await fetchApi(Url+'exercisecategory/');
 
   data.results.forEach(cats => {
     const element = document.createElement('div');
@@ -63,17 +60,15 @@ async function categorys() {
   });
 }
 
-
 //lopper iggennem den givne api og danner kortne
-async function processApi(url) {
+async function processApi() {
   //henter data
-  const response = await fetch(url);
-  const data = await response.json();
+  const data = await fetchApi(Url+'exercise/');
 
   //looper gennem alle resultaterne
   data.results.forEach(exsersice => {
     //tjækker om der er fyld på, om det er den rigtige kattegori og om det er på engelsk
-    if(exsersice.name_original != "" && exsersice.description != "" && exsersice.category == MuscleGroup && exsersice.language == 2){
+    if(exsersice.description != "" && exsersice.category == MuscleGroup){
       const card = document.createElement('div');
       card.setAttribute('class', 'card');
 
@@ -88,9 +83,8 @@ async function processApi(url) {
       card.appendChild(p);
 
       //finder det tilhørende billede
-      async function getImg(url){
-        const response = await fetch(url);
-        const data = await response.json();
+      async function getImg(){
+        const data = await fetchApi(Url+'exerciseimage/');
 
         data.results.forEach(image => {
           if(image.exercise == exsersice.id){
@@ -101,27 +95,18 @@ async function processApi(url) {
             card.appendChild(imge);
           }
         });
-        //søger for at vi tjækker alle
-        if(data.next != null){
-          getImg(data.next);
-        }
       }
-      getImg(Url+'exerciseimage/');
+      getImg();
     }
   });
-  //søger for at vi får alle øvelserne med
-  if(data.next != null){
-    processApi(data.next);
-  }
 }
-
 
 //kaldes når brugeren klikker på en kategori
 function defineMuscle(i) {
   if(i != MuscleGroup){
     Container.innerHTML = "";
     MuscleGroup = i;
-    processApi(Url+'exercise/');
+    processApi();
   }
 }
 
