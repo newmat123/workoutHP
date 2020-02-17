@@ -65,49 +65,62 @@ async function categorys() {
   });
 }
 
+
+function createCard(name, description, image, id) {
+
+  const card = document.createElement('div');
+  card.setAttribute('class', 'card');
+  card.setAttribute('onclick', 'f('+id+')');
+
+  const h1 = document.createElement('h1');
+  h1.innerHTML = name;
+
+  const p = document.createElement('p');
+  description = description.substring(0, 200)
+  if(description.length > 10){
+    p.innerHTML = `${description}`;
+  }else {
+    p.innerHTML = '';
+  }
+  
+  const more = document.createElement('div');
+  more.setAttribute('class', 'ReadMoreB');
+  more.innerHTML = 'Klick to read more';
+
+  Container.appendChild(card);
+  card.appendChild(h1);
+  card.appendChild(p);
+
+  if(image != null){
+
+    for (var i = 0; i < image.length; i++) {
+      const imge = document.createElement('img');
+      imge.setAttribute('class', 'cardImg');
+      imge.setAttribute('src', image[i]);
+      card.appendChild(imge);
+    }
+  }
+  card.appendChild(more);
+}
+
 //lopper iggennem den givne api og danner kortne
 async function processApi() {
   //henter data
   const data = await fetchApi(Url+'exercise/');
+  const imgdata = await fetchApi(Url+'exerciseimage/');
 
   //looper gennem alle resultaterne
   data.results.forEach(exsersice => {
     //tjækker om der er fyld på, om det er den rigtige kattegori og om det er på engelsk
     if(exsersice.description != "" && exsersice.category == MuscleGroup){
-      const card = document.createElement('div');
-      card.setAttribute('class', 'card');
-
-      const h1 = document.createElement('h1');
-      h1.innerHTML = exsersice.name_original;
-
-      const p = document.createElement('p');
-      exsersice.description = exsersice.description.substring(0, 200)
-      p.innerHTML = `${exsersice.description}`;
-
-      const more = document.createElement('div');
-      more.setAttribute('class', 'ReadMoreB');
-      more.innerHTML = 'Klick to read more';
-
-      Container.appendChild(card);
-      card.appendChild(h1);
-      card.appendChild(p);
-      card.appendChild(more);
-
+      var imgs = [];
       //finder det tilhørende billede
-      async function getImg(){
-        const data = await fetchApi(Url+'exerciseimage/');
-
-        data.results.forEach(image => {
-          if(image.exercise == exsersice.id){
-            const imge = document.createElement('img');
-            imge.setAttribute('class', 'cardImg');
-            imge.setAttribute('src', image.image);
-
-            card.appendChild(imge);
-          }
-        });
-      }
-      getImg();
+      imgdata.results.forEach(image => {
+        if(image.exercise == exsersice.id){
+          imgs.push(image.image);
+        }
+      });
+      createCard(exsersice.name_original, exsersice.description, imgs, exsersice.id)
     }
   });
 }
