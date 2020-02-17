@@ -66,16 +66,16 @@ async function categorys() {
     element.innerHTML = cats.name;
 
     CatHolder.appendChild(element);
-
   });
 }
+
 
 //modtager info og danner kortne udfra det
 function createCard(name, description, image, id) {
 
   const card = document.createElement('div');
   card.setAttribute('class', 'card');
-  card.setAttribute('onclick', 'f('+id+')');
+  card.setAttribute('onclick', 'exstendedInfo('+id+')');
 
   const h1 = document.createElement('h1');
   h1.innerHTML = name;
@@ -123,6 +123,25 @@ async function processApi() {
       //finder det tilhørende billede
       DataImg.results.forEach(image => {
         if(image.exercise == exsersice.id){
+          imgs.push(image.image);
+        }
+      });
+      createCard(exsersice.name_original, exsersice.description, imgs, exsersice.id)
+    }
+  });
+}
+
+function exstendedInfo(id) {
+
+  Container.innerHTML = "";
+
+  DataExsesice.results.forEach(exsersice => {
+    //tjækker om der er fyld på, om det er den rigtige kattegori og om det er på engelsk
+    if(exsersice.id == id){
+      var imgs = [];
+      //finder det tilhørende billede
+      DataImg.results.forEach(image => {
+        if(image.exercise == id){
           imgs.push(image.image);
         }
       });
