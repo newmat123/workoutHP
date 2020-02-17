@@ -41,7 +41,7 @@ card.appendChild(imge);
 card.appendChild(more);
 //card example
 
-
+//henter dataen ned og retunere den
 async function fetchApi(url) {
   //henter data
   const response = await fetch(url+'?limit=200000&language=2&status=2');
@@ -65,7 +65,7 @@ async function categorys() {
   });
 }
 
-
+//modtager info og danner kortne udfra det
 function createCard(name, description, image, id) {
 
   const card = document.createElement('div');
@@ -82,7 +82,7 @@ function createCard(name, description, image, id) {
   }else {
     p.innerHTML = '';
   }
-  
+
   const more = document.createElement('div');
   more.setAttribute('class', 'ReadMoreB');
   more.innerHTML = 'Klick to read more';
@@ -103,7 +103,7 @@ function createCard(name, description, image, id) {
   card.appendChild(more);
 }
 
-//lopper iggennem den givne api og danner kortne
+//lopper iggennem den givne api
 async function processApi() {
   //henter data
   const data = await fetchApi(Url+'exercise/');
