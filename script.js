@@ -67,11 +67,15 @@ async function categorys() {
 
     CatHolder.appendChild(element);
   });
+  if(DataExsesice == null || DataImg == null){
+    DataExsesice = await fetchApi(Url+'exercise/');
+    DataImg = await fetchApi(Url+'exerciseimage/');
+  }
 }
 
 
 //modtager info og danner kortne udfra det
-function createCard(name, description, image, id) {
+function createCard(name, description, image, id, fullcard) {
 
   const card = document.createElement('div');
   card.setAttribute('class', 'card');
@@ -88,9 +92,15 @@ function createCard(name, description, image, id) {
     p.innerHTML = '';
   }
 
-  const more = document.createElement('div');
-  more.setAttribute('class', 'ReadMoreB');
-  more.innerHTML = 'Klick to read more';
+  var more = null;
+
+  if(fullcard == true){
+    //find ekstra data
+  }else{
+    more = document.createElement('div');
+    more.setAttribute('class', 'ReadMoreB');
+    more.innerHTML = 'Klick to read more';
+  }
 
   Container.appendChild(card);
   card.appendChild(h1);
@@ -105,7 +115,9 @@ function createCard(name, description, image, id) {
       card.appendChild(imge);
     }
   }
-  card.appendChild(more);
+  if(more != null){
+    card.appendChild(more);
+  }
 }
 
 //lopper iggennem den givne api
@@ -126,14 +138,16 @@ async function processApi() {
           imgs.push(image.image);
         }
       });
-      createCard(exsersice.name_original, exsersice.description, imgs, exsersice.id)
+      createCard(exsersice.name_original, exsersice.description, imgs, exsersice.id, false);
     }
   });
 }
 
+//danner det kort som viser det hele
 function exstendedInfo(id) {
 
   Container.innerHTML = "";
+  MuscleGroup = null;
 
   DataExsesice.results.forEach(exsersice => {
     //tjækker om der er fyld på, om det er den rigtige kattegori og om det er på engelsk
@@ -145,7 +159,7 @@ function exstendedInfo(id) {
           imgs.push(image.image);
         }
       });
-      createCard(exsersice.name_original, exsersice.description, imgs, exsersice.id)
+      createCard(exsersice.name_original, exsersice.description, imgs, exsersice.id, true);
     }
   });
 }
