@@ -1,11 +1,10 @@
-//http://wger.de/en/software/api
-
 //muskel gruppen brugeren kigger på
 var MuscleGroup;
 
 //de forskellige dataset
 var DataExsesice = null;
 var DataImg = null;
+var DataInfo = null;
 
 //rooten af apien
 const Url = 'https://wger.de/api/v2/';
@@ -20,32 +19,6 @@ Container.setAttribute('class', 'container');
 Main.appendChild(Container);
 
 
-//card example
-const card = document.createElement('div');
-card.setAttribute('class', 'card');
-
-const h1 = document.createElement('h1');
-h1.innerHTML = 'exsersice.name';
-
-const p = document.createElement('p');
-p.innerHTML = `exsersice.discription`;
-
-const more = document.createElement('div');
-more.setAttribute('class', 'ReadMoreB');
-more.innerHTML = 'Klick read more';
-
-const imge = document.createElement('img');
-imge.setAttribute('class', 'cardImg');
-imge.setAttribute('src', 'imges/Hammer-Curls.jpg');
-
-Container.appendChild(card);
-card.appendChild(h1);
-card.appendChild(p);
-card.appendChild(imge);
-card.appendChild(more);
-//card example
-
-
 //henter dataen ned og retunere den
 async function fetchApi(url) {
   //henter data
@@ -53,6 +26,7 @@ async function fetchApi(url) {
   const data = await response.json();
   return data;
 }
+
 
 //henter de forskellige kategorier
 async function categorys() {
@@ -67,44 +41,43 @@ async function categorys() {
 
     CatHolder.appendChild(element);
   });
-  if(DataExsesice == null || DataImg == null){
+  if(DataExsesice == null || DataImg == null || DataInfo == null){
     DataExsesice = await fetchApi(Url+'exercise/');
     DataImg = await fetchApi(Url+'exerciseimage/');
+    DataInfo = await fetchApi(Url+'exerciseinfo/');
   }
 }
 
 
 //modtager info og danner kortne udfra det
-function createCard(name, description, image, id, fullcard) {
+function createCard(name, description, image, id) {
 
-  const card = document.createElement('div');
-  card.setAttribute('class', 'card');
-  card.setAttribute('onclick', 'exstendedInfo('+id+')');
+  var element = ['div','h1','p','div'];
+  var arr = [];
 
-  const h1 = document.createElement('h1');
-  h1.innerHTML = name;
+  for (var i = 0; i < element.length; i++) {
+    arr.push(document.createElement(element[i]));
+  }
 
-  const p = document.createElement('p');
+  arr[0].setAttribute('class', 'card');
+  arr[0].setAttribute('onclick', 'exstendedInfo('+id+')');
+
+  arr[1].innerHTML = name;
+
   description = description.substring(0, 200)
   if(description.length > 10){
-    p.innerHTML = `${description}`;
+    arr[2].innerHTML = `${description}`;
   }else {
-    p.innerHTML = '';
+    arr[2].innerHTML = '';
   }
 
-  var more = null;
+  arr[3].setAttribute('class', 'ReadMoreB');
+  arr[3].innerHTML = 'Klick to read more';
 
-  if(fullcard == true){
-    //find ekstra data
-  }else{
-    more = document.createElement('div');
-    more.setAttribute('class', 'ReadMoreB');
-    more.innerHTML = 'Klick to read more';
+  Container.appendChild(arr[0]);
+  for (var i = 1; i < arr.length; i++) {
+    arr[0].appendChild(arr[i]);
   }
-
-  Container.appendChild(card);
-  card.appendChild(h1);
-  card.appendChild(p);
 
   if(image != null){
 
@@ -112,13 +85,12 @@ function createCard(name, description, image, id, fullcard) {
       const imge = document.createElement('img');
       imge.setAttribute('class', 'cardImg');
       imge.setAttribute('src', image[i]);
-      card.appendChild(imge);
+      arr[0].appendChild(imge);
     }
   }
-  if(more != null){
-    card.appendChild(more);
-  }
+  arr[0].appendChild(arr[3]);
 }
+
 
 //lopper iggennem den givne api
 async function processApi() {
@@ -138,10 +110,11 @@ async function processApi() {
           imgs.push(image.image);
         }
       });
-      createCard(exsersice.name_original, exsersice.description, imgs, exsersice.id, false);
+      createCard(exsersice.name_original, exsersice.description, imgs, exsersice.id);
     }
   });
 }
+
 
 //danner det kort som viser det hele
 function exstendedInfo(id) {
@@ -152,17 +125,68 @@ function exstendedInfo(id) {
   DataExsesice.results.forEach(exsersice => {
     //tjækker om der er fyld på, om det er den rigtige kattegori og om det er på engelsk
     if(exsersice.id == id){
+
       var imgs = [];
+      var musclesgroups = null;
+      var musclesgroupssecond = null;
+      var curentCategory = null;
+      var eqepment = null;
+
       //finder det tilhørende billede
       DataImg.results.forEach(image => {
-        if(image.exercise == id){
+        if(image.exercise == exsersice.id){
           imgs.push(image.image);
         }
       });
-      createCard(exsersice.name_original, exsersice.description, imgs, exsersice.id, true);
+
+      DataInfo.results.forEach(infos => {
+        if(infos.name == exsersice.name){
+
+          curentCategory = infos.category.name
+          musclesgroups = infos.muscles.name;
+          musclesgroupssecond = infos.muscles_secondary.name;
+          eqepment = infos.equipment.name;
+
+        }
+      });
+
+      var element = ['div','h1','p','p','p','p','p','p','p'];
+      var arr = [];
+      for (var i = 0; i < element.length; i++) {
+        arr.push(document.createElement(element[i]));
+      }
+
+      arr[0].setAttribute('class', 'card');
+      arr[1].innerHTML = exsersice.name;
+      arr[2].innerHTML = exsersice.description;
+      arr[3].innerHTML = curentCategory;
+      arr[4].innerHTML = `musclesgroups: ${musclesgroups}`;
+      arr[5].innerHTML = `secondary muscles: ${musclesgroupssecond}`;
+      arr[6].innerHTML = `eqepment: ${eqepment}`;
+      arr[7].innerHTML = `creator: ${exsersice.license_author}`;
+      arr[8].innerHTML = exsersice.creation_date;
+
+      Container.appendChild(arr[0]);
+      for (var i = 1; i < arr.length; i++) {
+        arr[0].appendChild(arr[i]);
+      }
+
+      if(imgs != null){
+
+        for (var i = 0; i < imgs.length; i++) {
+          const imge = document.createElement('img');
+          imge.setAttribute('class', 'cardImg');
+          imge.setAttribute('src', imgs[i]);
+          arr[0].appendChild(imge);
+        }
+      }
+
+      arr[0].appendChild(arr[7]);
+      arr[0].appendChild(arr[8]);
     }
   });
 }
+
 
 //kaldes når brugeren klikker på en kategori
 function defineMuscle(i) {
@@ -172,6 +196,7 @@ function defineMuscle(i) {
     processApi();
   }
 }
+
 
 //søger for at kategorierne bliver fremvist
 categorys();
