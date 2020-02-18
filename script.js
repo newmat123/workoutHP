@@ -159,7 +159,7 @@ function exstendedInfo(id) {
       arr[0].setAttribute('class', 'card');
       arr[1].innerHTML = exsersice.name;
       arr[2].innerHTML = exsersice.description;
-      arr[3].innerHTML = curentCategory;
+      arr[3].innerHTML = `Category: ${curentCategory}`;
       arr[4].innerHTML = `musclesgroups: ${musclesgroups}`;
       arr[5].innerHTML = `secondary muscles: ${musclesgroupssecond}`;
       arr[6].innerHTML = `eqepment: ${eqepment}`;
