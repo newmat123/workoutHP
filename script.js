@@ -161,10 +161,20 @@ function exstendedInfo(id) {
       arr[0].setAttribute('class', 'card special');
       arr[1].innerHTML = exsersice.name;
       arr[2].innerHTML = exsersice.description;
-      arr[3].innerHTML = `Category: ${curentCategory}`;
-      arr[4].innerHTML = `musclesgroups: ${musclesgroups}`;
-      arr[5].innerHTML = `secondary muscles: ${musclesgroupssecond}`;
-      arr[6].innerHTML = `eqepment: ${eqepment}`;
+
+      if(curentCategory != null){
+        arr[3].innerHTML = `Category: ${curentCategory}`;
+      }
+      if(musclesgroups != null){
+        arr[4].innerHTML = `musclesgroups: ${musclesgroups}`;
+      }
+      if(musclesgroupssecond != null){
+        arr[5].innerHTML = `secondary muscles: ${musclesgroupssecond}`;
+      }
+      if(eqepment != null){
+        arr[6].innerHTML = `eqepment: ${eqepment}`;
+      }
+
       arr[7].innerHTML = `creator: ${exsersice.license_author}`;
       arr[8].innerHTML = exsersice.creation_date;
 
