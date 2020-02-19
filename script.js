@@ -28,6 +28,7 @@ async function fetchApi(url) {
 }
 
 
+
 //henter de forskellige kategorier
 async function categorys() {
 
@@ -95,10 +96,12 @@ function createCard(name, description, image, id) {
 //lopper iggennem den givne api
 async function processApi() {
   //henter data hvis den ikke allerede er hentet
-  if(DataExsesice == null || DataImg == null){
+  if(DataExsesice == null || DataImg == null || DataInfo == null){
     DataExsesice = await fetchApi(Url+'exercise/');
     DataImg = await fetchApi(Url+'exerciseimage/');
+    DataInfo = await fetchApi(Url+'exerciseinfo/');
   }
+
   //looper gennem alle resultaterne
   DataExsesice.results.forEach(exsersice => {
     //tjækker om der er fyld på, om det er den rigtige kattegori og om det er på engelsk
@@ -146,7 +149,6 @@ function exstendedInfo(id) {
           musclesgroups = infos.muscles.name;
           musclesgroupssecond = infos.muscles_secondary.name;
           eqepment = infos.equipment.name;
-
         }
       });
 
