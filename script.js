@@ -158,7 +158,7 @@ function exstendedInfo(id) {
         arr.push(document.createElement(element[i]));
       }
 
-      arr[0].setAttribute('class', 'card');
+      arr[0].setAttribute('class', 'card special');
       arr[1].innerHTML = exsersice.name;
       arr[2].innerHTML = exsersice.description;
       arr[3].innerHTML = `Category: ${curentCategory}`;
