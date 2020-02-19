@@ -68,8 +68,6 @@ function createCard(name, description, image, id) {
   description = description.substring(0, 200)
   if(description.length > 10){
     arr[2].innerHTML = `${description}`;
-  }else {
-    arr[2].innerHTML = '';
   }
 
   arr[3].setAttribute('class', 'ReadMoreB');
@@ -121,6 +119,7 @@ async function processApi() {
 
 //danner det kort som viser det hele
 function exstendedInfo(id) {
+
 
   Container.innerHTML = "";
   MuscleGroup = null;
@@ -202,6 +201,7 @@ function exstendedInfo(id) {
 
 //kaldes når brugeren klikker på en kategori
 function defineMuscle(i) {
+
   if(i != MuscleGroup){
     Container.innerHTML = "";
     MuscleGroup = i;
