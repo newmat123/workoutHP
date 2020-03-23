@@ -2,6 +2,7 @@
 var MuscleGroup;
 
 //de forskellige dataset
+var DataCategorys = null;
 var DataExsesice = null;
 var DataImg = null;
 var DataInfo = null;
@@ -22,7 +23,7 @@ Main.appendChild(Container);
 //henter dataen ned og retunere den
 async function fetchApi(url) {
   //henter data
-  const response = await fetch(url+'?limit=200000&language=2&status=2');
+  const response = await fetch(url+'?limit=200000000&language=2&status=2');
   const data = await response.json();
   return data;
 }
@@ -32,9 +33,9 @@ async function fetchApi(url) {
 //henter de forskellige kategorier
 async function categorys() {
 
-  const data = await fetchApi(Url+'exercisecategory/');
+  DataCategorys = await fetchApi(Url+'exercisecategory/');
 
-  data.results.forEach(cats => {
+  DataCategorys.results.forEach(cats => {
     const element = document.createElement('div');
     element.setAttribute('class', 'muscelgroups');
     element.setAttribute('onclick', 'defineMuscle('+cats.id+')');
