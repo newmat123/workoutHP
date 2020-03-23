@@ -81,10 +81,12 @@ function createCard(name, description, image, id) {
   if(image != null){
 
     for (var i = 0; i < image.length; i++) {
-      const imge = document.createElement('img');
-      imge.setAttribute('class', 'cardImg');
-      imge.setAttribute('src', image[i]);
-      arr[0].appendChild(imge);
+      if(image[i].is_main){ // ændret !!!!!!!!!!!!!!!! flowchart
+        const imge = document.createElement('img');
+        imge.setAttribute('class', 'cardImg');
+        imge.setAttribute('src', image[i].image);
+        arr[0].appendChild(imge);
+      }
     }
   }
   arr[0].appendChild(arr[3]);
@@ -108,7 +110,7 @@ async function processApi() {
       //finder det tilhørende billede
       DataImg.results.forEach(image => {
         if(image.exercise == exsersice.id){
-          imgs.push(image.image);
+          imgs.push(image);
         }
       });
       createCard(exsersice.name_original, exsersice.description, imgs, exsersice.id);
