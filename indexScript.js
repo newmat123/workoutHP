@@ -7,6 +7,11 @@ var DataInfo = null;
 //rooten af apien
 const Url = 'https://wger.de/api/v2/';
 
+//var i = new FileReader()
+//i.readAsText(fil, "UTF-16")
+
+var i = new FileReader()
+i.readAsText(fil, "UTF-16")
 
 async function fetchApi(url) {
   //henter data
