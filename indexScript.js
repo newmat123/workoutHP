@@ -10,6 +10,18 @@ const Url = 'https://wger.de/api/v2/';
 //var i = new FileReader()
 //i.readAsText(fil, "UTF-16")
 
+//var reader = new FileReader();
+//reader.onload = function(event) {
+//    var contents = event.target.result;
+//    console.log("File contents: " + contents);
+//};  https://humanwhocodes.com/blog/2012/05/15/working-with-files-in-javascript-part-2/
+
+//reader.onerror = function(event) {
+//    console.error("File could not be read! Code " + event.target.error.code);
+//};
+
+//reader.readAsText(file);
+
 var i = new FileReader()
 i.readAsText(fil, "UTF-16")
 
