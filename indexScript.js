@@ -7,20 +7,6 @@ var DataInfo = null;
 //rooten af apien
 const Url = 'https://wger.de/api/v2/';
 
-//var i = new FileReader()
-//i.readAsText(fil, "UTF-16")
-
-//var reader = new FileReader();
-//reader.onload = function(event) {
-//    var contents = event.target.result;
-//    console.log("File contents: " + contents);
-//};  //https://humanwhocodes.com/blog/2012/05/15/working-with-files-in-javascript-part-2/
-
-//reader.onerror = function(event) {
-//    console.error("File could not be read! Code " + event.target.error.code);
-//};
-
-//reader.readAsText("test.json");
 
 
 async function fetchApi(url) {
@@ -31,25 +17,13 @@ async function fetchApi(url) {
 }
 
 
+
 async function getData() {
 
-  //var reader = new FileReader();
-  //reader.onload = function(event) {
-  //    var contents = event.target.result;
-  //    console.log("File contents: " + contents);
-  //};  //https://humanwhocodes.com/blog/2012/05/15/working-with-files-in-javascript-part-2/
-
-  //reader.onerror = function(event) {
-  //    console.error("File could not be read! Code " + event.target.error.code);
-  //};
-  var json = $.getJSON("test.json");
-  var data = eval("(" +json.responseText + ")");
-  //reader.readAsText("test.json");
-
-  //DataCategorys = await fetchApi(Url+'exercisecategory/');
-  //DataExsesice = await fetchApi(Url+'exercise/');
-  //DataImg = await fetchApi(Url+'exerciseimage/');
-  //DataInfo = await fetchApi(Url+'exerciseinfo/');
+  DataCategorys = await fetchApi(Url+'exercisecategory/');
+  DataExsesice = await fetchApi(Url+'exercise/');
+  DataImg = await fetchApi(Url+'exerciseimage/');
+  DataInfo = await fetchApi(Url+'exerciseinfo/');
 }
 
 
