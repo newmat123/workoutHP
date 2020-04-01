@@ -82,7 +82,7 @@ function createCard(name, description, image, id) {
   if(image != null){
 
     for (var i = 0; i < image.length; i++) {
-      if(image[i].is_main){ // ændret !!!!!!!!!!!!!!!! flowchart
+      if(image[i].is_main){ //--------------------------------------------------------------nyt
         const imge = document.createElement('img');
         imge.setAttribute('class', 'cardImg');
         imge.setAttribute('src', image[i].image);
@@ -96,11 +96,11 @@ function createCard(name, description, image, id) {
 
 //lopper iggennem den givne api
 async function processApi() {
-  //henter data hvis den ikke allerede er hentet
-  if(DataExsesice == null || DataImg == null || DataInfo == null){
-    DataExsesice = await fetchApi(Url+'exercise/');
-    DataImg = await fetchApi(Url+'exerciseimage/');
-    DataInfo = await fetchApi(Url+'exerciseinfo/');
+
+  //venter på data hvis den ikke er hentet
+  while(DataExsesice == null || DataImg == null || DataInfo == null){//------------------------nyt
+    await new Promise(r => setTimeout(r, 500));
+    console.log("waitnig for data");
   }
 
   //looper gennem alle resultaterne
