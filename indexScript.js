@@ -19,7 +19,6 @@ async function fetchApi(url) {
 
 
 async function getData() {
-
   DataCategorys = await fetchApi(Url+'exercisecategory/');
   DataExsesice = await fetchApi(Url+'exercise/');
   DataImg = await fetchApi(Url+'exerciseimage/');
