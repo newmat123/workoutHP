@@ -1,13 +1,4 @@
-//de forskellige dataset
-var DataCategorys = null;
-var DataExsesice = null;
-var DataImg = null;
-var DataInfo = null;
-
-//rooten af apien
-const Url = 'https://wger.de/api/v2/';
-
-
+//henter al dataen fra apien og gemmer dataen.
 
 async function fetchApi(url) {
   //henter data
@@ -15,7 +6,6 @@ async function fetchApi(url) {
   const data = await response.json();
   return data;
 }
-
 
 
 async function getData() {

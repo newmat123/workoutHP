@@ -1,11 +1,3 @@
 jquery.
 
 lav alt html i en fil og ædnre det løbende med jquery.
-
-i samme fil kan skripts bruge samme variabler på kryds og tværs veddy nice.
-
-load data med det samme.
-
-sørg for man ikke kan klikke rundt før dataen er loaded.
-
-load procces og vis scripts for sig.

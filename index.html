@@ -14,33 +14,42 @@
       <img src="imges\Casper__Nicklas.png" alt="">
     </div>
 
+
+
     <div class="topnav">
 
-      <a href="#">
-        <div class="option">
-          Home
-        </div>
-      </a>
+      <div class="option" onclick="Home()">
+        Home
+      </div>
 
-      <a href="exercise.html">
-        <div class="option">
-          Exercise
-        </div>
-      </a>
+      <div class="option" onclick="showCategorys()">
+        Exercise
+      </div>
 
-      <a href="planing.html">
-        <div class="option">
-          Planing
-        </div>
-      </a>
+      <div class="option" onclick="Planing()">
+        Planing
+      </div>
 
     </div>
+
+
+
+    <div class="topnav" id="categories">
+
+    </div>
+
+
 
     <div class="column">
       <div id="root">
 
       </div>
     </div>
-    <script type="text/javascript" src="indexScript.js"></script>
+
+    <script type="text/javascript" src="vars.js"></script>
+    <script type="text/javascript" src="fetchDataScript.js"></script>
+    <script type="text/javascript" src="procesData.js"></script>
+    <script type="text/javascript" src="optionScript.js"></script>
+
   </body>
 </html>

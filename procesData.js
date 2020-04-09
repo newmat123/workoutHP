@@ -1,55 +1,4 @@
-//muskel gruppen brugeren kigger på
-var MuscleGroup;
-
-//de forskellige dataset
-var DataCategorys = null;
-var DataExsesice = null;
-var DataImg = null;
-var DataInfo = null;
-
-//rooten af apien
-const Url = 'https://wger.de/api/v2/';
-
-//holder kategorierne
-const CatHolder = document.getElementById('categories');
-
-//finner og holder containerens plads
-const Main = document.getElementById('root');
-const Container = document.createElement('div');
-Container.setAttribute('class', 'container');
-Main.appendChild(Container);
-
-
-//henter dataen ned og retunere den
-async function fetchApi(url) {
-  //henter data
-  const response = await fetch(url+'?limit=200000000&language=2&status=2');
-  const data = await response.json();
-  return data;
-}
-
-
-
-//henter de forskellige kategorier
-async function categorys() {
-
-  DataCategorys = await fetchApi(Url+'exercisecategory/');
-
-  DataCategorys.results.forEach(cats => {
-    const element = document.createElement('div');
-    element.setAttribute('class', 'muscelgroups');
-    element.setAttribute('onclick', 'defineMuscle('+cats.id+')');
-    element.innerHTML = cats.name;
-
-    CatHolder.appendChild(element);
-  });
-  if(DataExsesice == null || DataImg == null || DataInfo == null){
-    DataExsesice = await fetchApi(Url+'exercise/');
-    DataImg = await fetchApi(Url+'exerciseimage/');
-    DataInfo = await fetchApi(Url+'exerciseinfo/');
-  }
-}
-
+//beerbejder dataen og fremviser den for brugen.
 
 //modtager info og danner kortne udfra det
 function createCard(name, description, image, id) {
@@ -99,8 +48,8 @@ async function processApi() {
 
   //venter på data hvis den ikke er hentet
   while(DataExsesice == null || DataImg == null || DataInfo == null){//------------------------nyt
-    await new Promise(r => setTimeout(r, 500));
     console.log("waitnig for data");
+    await new Promise(r => setTimeout(r, 500));
   }
 
   //looper gennem alle resultaterne
@@ -211,7 +160,3 @@ function defineMuscle(i) {
     processApi();
   }
 }
-
-
-//søger for at kategorierne bliver fremvist
-categorys();
