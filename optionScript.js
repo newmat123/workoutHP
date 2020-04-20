@@ -21,7 +21,7 @@ async function Planing() {
 
   CatHolder.innerHTML="";
   Container.innerHTML="";
-
+  //openPlaning();
 }
 
 async function Home() {
