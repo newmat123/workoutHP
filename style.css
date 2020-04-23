@@ -156,3 +156,17 @@ p {
   padding: 10px;
   border: solid 1px;
 }
+
+#scheduelContainer {
+  display: none;
+}
+
+#login{
+  position: absolute;
+  right: 0px;
+}
+
+#img{
+  height: auto;
+  width: 25px;
+}

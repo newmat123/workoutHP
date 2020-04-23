@@ -21,7 +21,7 @@ function createCard(name, description, image, id) {
   }
 
   arr[3].setAttribute('class', 'ReadMoreB');
-  arr[3].innerHTML = 'Klick to read more';
+  arr[3].innerHTML = 'Click to read more';
 
   Container.appendChild(arr[0]);
   for (var i = 1; i < arr.length; i++) {
