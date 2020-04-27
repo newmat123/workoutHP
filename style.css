@@ -170,3 +170,15 @@ p {
   height: auto;
   width: 25px;
 }
+
+.numberName {
+  width: 100px;
+  border: solid 1px;
+  border-radius: 5px;
+  padding: 10px;
+}
+
+.dataIMG {
+  width: 70%;
+  height: auto;
+}
