@@ -1,0 +1,10 @@
+{
+    "days": {
+        "mandag": "126 Udhna",
+        "onsdag": "san jone",
+        "fradag": "CA"
+    },
+    "phoneNumbers": [
+        { "type": "home", "number": "7383627627" }
+    ]
+}
