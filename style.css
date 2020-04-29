@@ -188,3 +188,22 @@ p {
   border-radius: 5px;
   border-color: #444;
 }
+
+
+#dateContainer {
+  margin-left: 1%;
+  margin-top: 25px;
+  width: 300px;
+}
+
+#goB {
+  width: inherit;
+  padding: 5px;
+  border: solid 1px;
+  border-radius: 5px;
+  cursor: pointer;
+  text-align: center;
+}
+#goB:hover {
+  background-color: #555;
+}

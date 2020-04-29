@@ -21,6 +21,7 @@ async function Planing() {
 
   CatHolder.innerHTML="";
   Container.innerHTML="";
+  document.getElementById('scheduelContainer').style.display = "none";
   openPlaning();
 }
 
