@@ -135,13 +135,14 @@ p {
   border: solid 1px;
   border-radius: 5px;
   background-color: #333;
+  padding: 10px;
 }
 
 .days {
   width: 100%;
   height: 100%;
   background-color: #444;
-  margin-bottom: 10px;
+  margin-bottom: 100px;
 }
 
 .Day {
@@ -172,13 +173,18 @@ p {
 }
 
 .numberName {
-  width: 100px;
+  width: 100%;
   border: solid 1px;
   border-radius: 5px;
   padding: 10px;
 }
 
-.dataIMG {
-  width: 70%;
-  height: auto;
+.dataIMg {
+  max-width: 70%;
+}
+
+.DataHolder {
+  background-color: #333;
+  border-radius: 5px;
+  border-color: #444;
 }

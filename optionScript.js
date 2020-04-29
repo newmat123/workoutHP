@@ -3,7 +3,6 @@
 
 //viser de forskellige kategorier
 async function showCategorys() {
-
   CatHolder.innerHTML="";
   Container.innerHTML="";
   document.getElementById('scheduelContainer').style.display = "none";
