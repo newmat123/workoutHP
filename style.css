@@ -196,7 +196,7 @@ p {
   width: 300px;
 }
 
-#goB {
+.goB {
   width: inherit;
   padding: 5px;
   border: solid 1px;
@@ -204,6 +204,6 @@ p {
   cursor: pointer;
   text-align: center;
 }
-#goB:hover {
+.goB:hover {
   background-color: #555;
 }

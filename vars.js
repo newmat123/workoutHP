@@ -21,3 +21,6 @@ const Main = document.getElementById('root');
 const Container = document.createElement('div');
 Container.setAttribute('class', 'container');
 Main.appendChild(Container);
+
+
+const MonthCode = [0,3,3,6,1,4,6,2,5,0,3,5];
