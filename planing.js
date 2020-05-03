@@ -1,6 +1,6 @@
 function openPlaning() {
 
-  if(loggedIn){
+  if(true){
     var date = new Date;
 
     var day = date.getDate(),

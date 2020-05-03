@@ -45,9 +45,9 @@
 
     <div class="column">
       <div class="loginHolder">
-        <input type="text" name="" value="" placeholder="User name" class="DataHolder">
+        <input type="username" name="username" value="" placeholder="User name" class="DataHolder">
         <br>
-        <input type="text" name="" value="" placeholder="Password" class="DataHolder">
+        <input type="password" name="password" value="" placeholder="Password" class="DataHolder">
         <div id="loginB" onclick="x" class="goB">
           Cuntinue
         </div>
