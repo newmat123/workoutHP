@@ -84,7 +84,7 @@ function exstendedInfo(id) {
       var musclesgroups = null;
       var musclesgroupssecond = null;
       var curentCategory = null;
-      
+      var eqepment = null;
 
       //finder det tilhørende billede
       DataImg.results.forEach(image => {
