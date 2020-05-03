@@ -34,8 +34,23 @@
 
   <body>
 
+    <div class="header">
+      <img src="imges\Casper__Nicklas.png" alt="">
+    </div>
+
+    <div class="topnav" id="topnav1">
+
+    </div>
+
+
     <div class="column">
-      <div id="root">
+      <div class="loginHolder">
+        <input type="text" name="" value="" placeholder="User name" class="DataHolder">
+        <br>
+        <input type="text" name="" value="" placeholder="Password" class="DataHolder">
+        <div id="loginB" onclick="x" class="goB">
+          Cuntinue
+        </div>
 
       </div>
     </div>
