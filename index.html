@@ -30,7 +30,7 @@
         Planing
       </div>
 
-      <div class="option" onclick="location.href='login.php';" id="login">
+      <div class="option" onclick="openlogin()" id="login">
         <img src="imges\login_img.png" alt="" id="img">
         Login
       </div>
@@ -46,6 +46,21 @@
 
 
     <div class="column">
+      <div id="Home">
+        <div class="hometxt">
+          <h1>This is a wep page, you can use to get in shape!</h1>
+          <br>
+          <p class="enders"></p>
+          <p>
+          You can use our exsersice labary to find the exsersice you wanna try.
+          Just clik on the exsersice bottun, chose a catergory and you are all good to go.
+          And if that iseent enough, use our pre bulid traning scesion, under planing,
+          and use it to ceep track of your progretion.
+          </p>
+          <p class="enders"></p>
+        </div>
+      </div>
+
       <div id="root">
 
         <div class="container" id="scheduelContainer">
@@ -274,7 +289,7 @@
               </div>
             </div>
 
-            <div class="goB">
+            <div class="goB" onclick="Home()">
               Save data
             </div>
 

@@ -24,3 +24,8 @@ Main.appendChild(Container);
 
 
 const MonthCode = [0,3,3,6,1,4,6,2,5,0,3,5];
+
+
+var names = ['me','you'];
+var passwords = ['me','you'];
+var isLoggedin = false;
