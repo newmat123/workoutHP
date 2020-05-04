@@ -1,4 +1,5 @@
 <?php
+  session_start();
 
   //Send til menuen, hvis en bruger allerede er logget ind.
   if (isset($_SESSION['id'])) {
@@ -51,9 +52,8 @@
         echo "<script type='text/javascript'>alert('Username is invalid');</script>";
       }
     }
-    //$conn->close();
+    $conn->close();
   }
-
 ?>
 
 <!DOCTYPE html>
@@ -81,8 +81,9 @@
           <input type="text" required="required" name="username" value="" placeholder="Enter Username" class="DataHolder">
           <br>
           <input type="password" required="required" name="password" value="" placeholder="Enter password" class="DataHolder">
-
+          <br>
           <button id="loginB" type="submit" name="loginB" class="goB">Login</button>
+          <a href="register.php">Register a new user</a>
         </div>
       </form>
 

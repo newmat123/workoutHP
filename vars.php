@@ -1,3 +1,7 @@
+<?php
+  session_start();
+?>
+
 <script type="text/javascript">
 
   //indeholder alle variabler som benyttes i programmet.
@@ -31,6 +35,7 @@
   var passwords = ['me','you'];
   var isLoggedin = false;
   var userId = <?php if(isset($_SESSION['id'])){echo $_SESSION['id'];}else{echo "null";}; ?>;
+
   console.log(userId);
 
 
