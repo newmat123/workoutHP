@@ -1,98 +1,22 @@
 <script type="text/javascript">
 
-  function changeLogin() {
-    var login = document.getElementById('login');
+  function openlogin() {
 
-    switch (isLoggedin) {
-      case true:
-        login. setAttribute('onclick', 'logout()')
-        login.innerHTML = '<img src="imges/login_img.png" alt="" id="img">Logout'
-        break;
-      case false:
-        login. setAttribute('onclick', 'openlogin()')
-        login.innerHTML = '<img src="imges/login_img.png" alt="" id="img">Login'
-        break;
-    }
+    window.location.href = 'login.php';
+
   }
 
   function logout() {
-    isLoggedin = false;
-    changeLogin();
-  }
 
-  function registre() {
-    var name = document.getElementById('un').value;
-    var password = document.getElementById('pw').value;
-    var password2 = document.getElementById('cpw').value;
-    var istaken = false;
+    window.location.href = 'logout.php';
 
-    if(password == password2){
-
-      for (var i = 0; i < names.length; i++) {
-        if(name == names[i]){
-          alert('username taken');
-          istaken = true;
-        }
-      }
-      if(!istaken){
-        names.push(name);
-        passwords.push(password);
-        isLoggedin = true;
-        changeLogin();
-        Home();
-      }
-    }else{
-      alert('Password is incorect');
-    }
-  }
-
-  function register(){
-    Container.innerHTML = "";
-
-    const loginHolder = document.createElement('div');
-    loginHolder.setAttribute('class', 'loginHolder');
-    loginHolder.innerHTML = '<input type="username" name="username" id= "un" value="" placeholder="User name" class="DataHolder"><br><input type="password" name="password" id = "pw" value="" placeholder="Password" class="DataHolder"><input type="password" name="confirmPassword" id = "cpw" value="" placeholder="Confirm password" class="DataHolder"><div id="loginB" onclick="registre()" class="goB">Cuntinue</div><div id="loginB" onclick="openlogin()" class="goB">Login</div>';
-
-
-    Container.appendChild(loginHolder);
-  }
-
-  function login() {
-    var username = document.getElementById('un').value;
-    var password = document.getElementById('pw').value;
-
-    for (var i = 0; i < names.length; i++) {
-      if(username == names[i] && password == passwords[i]){
-        isLoggedin = true;
-        changeLogin()
-        Home();
-      }
-    }
-    if(!isLoggedin){
-      alert('Password or username is incorect');
-    }
-  }
-
-
-  function openlogin() {
-    document.getElementById('Home').style.display = "none";
-    document.getElementById('scheduelContainer').style.display = "none";
-    CatHolder.innerHTML = "";
-    Container.innerHTML = "";
-
-    const loginHolder = document.createElement('div');
-    loginHolder.setAttribute('class', 'loginHolder');
-    loginHolder.innerHTML = '<input type="username" name="username" id= "un" value="" placeholder="User name" class="DataHolder"><br><input type="password" name="password" id = "pw" value="" placeholder="Password" class="DataHolder"><div id="loginB" onclick="login()" class="goB">Cuntinue</div><div id="loginB" onclick="register()" class="goB">Register</div>';
-
-
-    Container.appendChild(loginHolder);
   }
 
 
 
   function openPlaning() {
 
-    if(isLoggedin){
+    if(userId  != null){
       var date = new Date;
 
       var day = date.getDate(),

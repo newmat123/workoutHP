@@ -242,3 +242,7 @@ p {
   text-align: center;
   padding: 5px;
 }
+
+#loginID{
+  display: none;
+}

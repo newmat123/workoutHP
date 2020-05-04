@@ -35,6 +35,15 @@
     Container.innerHTML="";
     document.getElementById('scheduelContainer').style.display = "none";
     document.getElementById('Home').style.display = "block";
+
+    //her
+
+    if(userId != null){
+      var loginDiv = document.getElementById('login');
+      loginDiv.setAttribute('onclick', 'logout()');
+      loginDiv.inner = 'Logout';
+    }
+
   }
 
   Home();
