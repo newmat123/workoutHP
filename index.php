@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -298,12 +299,16 @@
 
       </div>
     </div>
-
-    <script type="text/javascript" src="vars.js"></script>
-    <script type="text/javascript" src="fetchDataScript.js"></script>
-    <script type="text/javascript" src="procesData.js"></script>
-    <script type="text/javascript" src="optionScript.js"></script>
-    <script type="text/javascript" src="planing.js"></script>
-
   </body>
 </html>
+
+
+<?php
+
+  include_once 'vars.php';
+  include_once 'fetchDataScript.php';
+  include_once 'procesData.php';
+  include_once 'optionScript.php';
+  include_once 'planing.php';
+
+ ?>

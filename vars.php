@@ -1,4 +1,3 @@
-
 <script type="text/javascript">
 
   //indeholder alle variabler som benyttes i programmet.
