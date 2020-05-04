@@ -34,7 +34,6 @@
       <div class="option" onclick="openlogin()" id="login">
         <img src="imges\login_img.png" alt="" id="img">
         Login
-        <input type="number" name="" id = "loginID" value="<?php echo $_SESSION['id']; ?>">
       </div>
 
     </div>

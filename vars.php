@@ -30,7 +30,7 @@
   var names = ['me','you'];
   var passwords = ['me','you'];
   var isLoggedin = false;
-  var userId = <?php echo $_SESSION['id']; ?>
+  var userId = <?php echo $_SESSION['id']; ?>;
 
 
 </script>
