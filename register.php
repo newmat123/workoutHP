@@ -36,15 +36,23 @@ if (isset($_POST['RegisterB'])) {
 
   // er der ingen fejl. smider vi de nye oplysninger ind i databasen.
   if (count($errors) == 0) {
-  	$password = md5($password_1);//encrypt the password before saving in the database
+  	$password = md5($password_1);//crypterer password før det bliver gemt på databasen
 
   	$query = "INSERT INTO users (username, password)
   			  VALUES('$username', '$password')";
   	mysqli_query($db, $query);
 
+    // skaffer det passende id til den nye bruger
+    $user_check_query = "SELECT * FROM users WHERE username='$username' LIMIT 1";
+    $result = mysqli_query($db, $user_check_query);
+    $user = mysqli_fetch_assoc($result);
+
+    $_SESSION['id'] = $user['id'];
   	$_SESSION['username'] = $username;
+
   	header('location: index.php');
   }
+  $db->close();
 }
 
 

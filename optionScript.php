@@ -41,7 +41,7 @@
     if(userId != null){
       var loginDiv = document.getElementById('login');
       loginDiv.setAttribute('onclick', 'logout()');
-      loginDiv.innerHTML = '<img src="imges/login_img.png" alt="" id="img">Logout';
+      loginDiv.innerHTML = '<img src="imges/login_img.png" alt="" id="img">'+userName;
     }
 
   }
