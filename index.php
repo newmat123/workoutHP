@@ -1,3 +1,7 @@
+<?php
+  session_start();
+?>
+
 
 <!DOCTYPE html>
 <html lang="en">
@@ -304,11 +308,10 @@
 
 
 <?php
-
+  //include_once 'login.php';
   include_once 'vars.php';
   include_once 'fetchDataScript.php';
   include_once 'procesData.php';
   include_once 'optionScript.php';
   include_once 'planing.php';
-
  ?>

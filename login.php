@@ -1,8 +1,5 @@
 <?php
 
-//Start en session til oprettelse af session variabler
-  session_start();
-
   //Send til menuen, hvis en bruger allerede er logget ind.
   if (isset($_SESSION['id'])) {
     header('location: index.php');
@@ -33,6 +30,8 @@
             //Opretter session variabler med id og brugernavn
             $_SESSION['id'] = $row['id'];
             $_SESSION['username'] = $row['username'];
+            //echo "<script type='text/javascript"."'>alert("."'"."$row['id']"."');</script>";
+            //echo "<script type='text/javascript'>alert('$row["id"]');</script>";
 
             //Lukker databaseforbindelse
             $conn->close();
@@ -52,7 +51,7 @@
         echo "<script type='text/javascript'>alert('Username is invalid');</script>";
       }
     }
-    $conn->close();
+    //$conn->close();
   }
 
 ?>

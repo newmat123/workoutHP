@@ -43,7 +43,6 @@
       document.getElementById('t').value = today;
     }else {
       openlogin();
-      alert("You must login first");
     }
   }
 
