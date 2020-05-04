@@ -17,8 +17,4 @@
     DataInfo = await fetchApi(Url+'exerciseinfo/');
   }
 
-
-  getData();
-
-  //hent dataen her og gem i en ny fil
 </script>

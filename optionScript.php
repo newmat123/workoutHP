@@ -3,6 +3,19 @@
   //de forskelliger funktioner som brugeren kan benytte sig af,
   //for at komme frem og tilbage på siden.
 
+  function openlogin() {
+    window.location.href = 'login.php';
+  }
+
+  function logout() {
+    window.location.href = 'logout.php';
+  }
+
+  function openUserPage() {
+    window.location.href = 'userPage.php';
+  }
+
+
   //viser de forskellige kategorier
   async function showCategorys() {
     CatHolder.innerHTML="";
@@ -20,6 +33,7 @@
     });
   }
 
+
   async function Planing() {
 
     CatHolder.innerHTML="";
@@ -36,14 +50,12 @@
     document.getElementById('scheduelContainer').style.display = "none";
     document.getElementById('Home').style.display = "block";
 
-    //her
-
     if(userId != null){
       var loginDiv = document.getElementById('login');
-      loginDiv.setAttribute('onclick', 'logout()');
+      loginDiv.setAttribute('onclick', 'openUserPage()');
       loginDiv.innerHTML = '<img src="imges/login_img.png" alt="" id="img">'+userName;
     }
-
+    getData();
   }
 
   Home();

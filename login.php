@@ -1,11 +1,6 @@
 <?php
   session_start();
 
-  //Send til menuen, hvis en bruger allerede er logget ind.
-  if (isset($_SESSION['id'])) {
-    header('location: index.php');
-  }
-
   //Variable til at gemme brugernavnet i tilfælde af, at koden er forkert.
   $username = "";
 

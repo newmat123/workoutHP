@@ -1,18 +1,5 @@
 <script type="text/javascript">
 
-  function openlogin() {
-
-    window.location.href = 'login.php';
-
-  }
-
-  function logout() {
-
-    window.location.href = 'logout.php';
-
-  }
-
-
 
   function openPlaning() {
 

@@ -1,14 +1,13 @@
 -- phpMyAdmin SQL Dump
--- version 4.9.2
+-- version 5.0.2
 -- https://www.phpmyadmin.net/
 --
--- Host: 127.0.0.1
--- Generation Time: May 04, 2020 at 01:58 PM
--- Server version: 10.4.11-MariaDB
--- PHP Version: 7.4.1
+-- Vært: 127.0.0.1
+-- Genereringstid: 04. 05 2020 kl. 23:01:13
+-- Serverversion: 10.4.11-MariaDB
+-- PHP-version: 7.2.30
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
-SET AUTOCOMMIT = 0;
 START TRANSACTION;
 SET time_zone = "+00:00";
 
@@ -25,7 +24,7 @@ SET time_zone = "+00:00";
 -- --------------------------------------------------------
 
 --
--- Table structure for table `users`
+-- Struktur-dump for tabellen `users`
 --
 
 CREATE TABLE `users` (
@@ -36,24 +35,32 @@ CREATE TABLE `users` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
--- Indexes for dumped tables
+-- Data dump for tabellen `users`
+--
+
+INSERT INTO `users` (`id`, `username`, `password`, `date`) VALUES
+(5, 'newmat123', '7888d65a43501d992cc38638b59964d6', '2020-05-04 20:14:45'),
+(6, 'g', 'b2f5ff47436671b6e533d8dc3614845d', '2020-05-04 20:26:45');
+
+--
+-- Begrænsninger for dumpede tabeller
 --
 
 --
--- Indexes for table `users`
+-- Indeks for tabel `users`
 --
 ALTER TABLE `users`
   ADD PRIMARY KEY (`id`);
 
 --
--- AUTO_INCREMENT for dumped tables
+-- Brug ikke AUTO_INCREMENT for slettede tabeller
 --
 
 --
--- AUTO_INCREMENT for table `users`
+-- Tilføj AUTO_INCREMENT i tabel `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
