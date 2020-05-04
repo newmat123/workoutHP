@@ -35,6 +35,7 @@
   var passwords = ['me','you'];
   var isLoggedin = false;
   var userId = <?php if(isset($_SESSION['id'])){echo $_SESSION['id'];}else{echo "null";}; ?>;
+  var userName = <?php if(isset($_SESSION['username'])){echo $_SESSION['username'];}else{echo "null";}; ?>;
 
   console.log(userId);
 

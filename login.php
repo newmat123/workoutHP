@@ -12,21 +12,22 @@
   //Checker om brugeren har klikket på login knappen
   if (isset($_POST['loginB'])) {
     //Opret database forbindelse
-    $conn = new mysqli('localhost', 'root', '', 'workouthp');
+    $db = new mysqli('localhost', 'root', '', 'workouthp');
 
     //Hent brugernavn og password fra input-felter og sikre mod sql angreb ved at fjerne speciele tegn og tage højde for serverens charset
-    $username = mysqli_real_escape_string($conn, $_POST['username']);
-    $password = mysqli_real_escape_string($conn, $_POST['password']);
+    $username = mysqli_real_escape_string($db, $_POST['username']);
+    $password = mysqli_real_escape_string($db, $_POST['password']);
 
     //Finder bruger ved hjælp af id
     $sql = "SELECT * FROM users WHERE username='$username' LIMIT 1";
-    $result = $conn->query($sql);
+    $result = $db->query($sql);
 
     if($result){
       if ($result->num_rows > 0) {
         while($row = $result->fetch_assoc()) {
-          //Checker om adgangskoderne matcher
-          //if (password_verify($password, $row['password'])) {
+
+          //cryptere det givne password og tjækker om det stemmer over ens
+          $password = md5($password);
           if ($password === $row['password']){
             //Opretter session variabler med id og brugernavn
             $_SESSION['id'] = $row['id'];
@@ -35,7 +36,7 @@
             //echo "<script type='text/javascript'>alert('$row["id"]');</script>";
 
             //Lukker databaseforbindelse
-            $conn->close();
+            $db->close();
 
             //Viderstiller til menuen
             header('location: index.php');
@@ -52,7 +53,7 @@
         echo "<script type='text/javascript'>alert('Username is invalid');</script>";
       }
     }
-    $conn->close();
+    $db->close();
   }
 ?>
 
