@@ -1,4 +1,8 @@
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js%22%3E</script>
+<script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js%22%3E</script>
+
 <script type="text/javascript">
+
 
 
   function openPlaning() {
@@ -68,6 +72,11 @@
     //https://artofmemory.com/blog/how-to-calculate-the-day-of-the-week-4203.html
 
     var day = (yearCode + monthCode + centuryCode + dateNumber) % 7;
+    $.post('datapush.php', { data: day, data1: chosenDate}, function(data){
+      //console.log(data);
+    });
+
+
 
     //console.log(day);
 

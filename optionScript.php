@@ -15,6 +15,15 @@
     window.location.href = 'userPage.php';
   }
 
+  async function Planing() {
+
+    CatHolder.innerHTML="";
+    Container.innerHTML="";
+    document.getElementById('scheduelContainer').style.display = "none";
+    document.getElementById('Home').style.display = "none";
+    openPlaning();
+    
+  }
 
   //viser de forskellige kategorier
   async function showCategorys() {
@@ -33,15 +42,6 @@
     });
   }
 
-
-  async function Planing() {
-
-    CatHolder.innerHTML="";
-    Container.innerHTML="";
-    document.getElementById('scheduelContainer').style.display = "none";
-    document.getElementById('Home').style.display = "none";
-    openPlaning();
-  }
 
   async function Home() {
 
