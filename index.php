@@ -70,24 +70,34 @@
 
     }
 
+    $check_query = "SELECT * FROM progressdata WHERE exercisename='$exercisename[1]' AND date='$date' AND userid='$userID'";
+    $result = mysqli_query($db, $check_query);
+    $user = mysqli_fetch_assoc($result);
 
-/*
-    $exercisename = mysqli_real_escape_string($db, $_POST['exname']);
-    $reps = mysqli_real_escape_string($db, $_POST['reps']);
-    $kg = mysqli_real_escape_string($db, $_POST['vægt']);
-*/
+    if ($user) {
+      for ($i=0; $i < count($exercisename); $i++) {
+        $sql = "UPDATE progressdata SET reps='$reps[$i]', kg='$kg[$i]' WHERE exercisename='$exercisename[$i]' AND date='$date' AND userid='$userID'";
+        mysqli_query($db, $sql);
+      }
+    }else {
+      for ($i=0; $i < count($exercisename); $i++) {
 
+        $query = "INSERT INTO progressdata (userid, date, kg, reps, exercisename)
+          VALUES('$userID', '$date', '$kg[$i]', '$reps[$i]', '$exercisename[$i]')";
+        mysqli_query($db, $query);
 
-    for ($i=0; $i < count($exercisename); $i++) {
-      $query = "INSERT INTO progressdata (userid, date, kg, reps, exsercisename)
-    			  VALUES('$userID', '$date', '$kg[i]', '$reps[i]', '$exercisename[i]')";
-    	mysqli_query($db, $query);
+      }
     }
 
 
-    header('location: index.php');
+    $exercisename = null;
+    $reps = null;
+    $kg = null;
+
+    //header('location: index.php');
 
     $db->close();
+
   }
 ?>
 
@@ -258,7 +268,7 @@
                   <img src="imges\PlaningIMGS\Cable+Fly.png" alt="" class="dataIMg">
 
                   <br>
-                  <input type="hidden" name="exname5" value="Hammer Curls" class="inv">
+                  <input type="hidden" name="exname5" value="Lying cable flyes" class="inv">
                   <input type="number" name="vægt5" value="" placeholder="Vægt i kg" class="DataHolder">
                   <input type="number" name="reps5" value="" placeholder="Reps" class="DataHolder">
                 </div>
@@ -276,7 +286,7 @@
                   <img src="imges\PlaningIMGS\Lying+Machine+Chest+Press.png" alt="" class="dataIMg">
 
                   <br>
-                  <input type="hidden" name="exname6" value="Hammer Curls" class="inv">
+                  <input type="hidden" name="exname6" value="Lying Machine Chest Press" class="inv">
                   <input type="number" name="vægt6" value="" placeholder="Vægt i kg" class="DataHolder">
                   <input type="number" name="reps6" value="" placeholder="Reps" class="DataHolder">
                 </div>
@@ -294,7 +304,7 @@
                   <img src="imges\PlaningIMGS\Cable+Triceps+Rope+Pushdowns.png" alt="" class="dataIMg">
 
                   <br>
-                  <input type="hidden" name="exname7" value="Hammer Curls" class="inv">
+                  <input type="hidden" name="exname7" value="Cable Triceps Rope Pushdowns" class="inv">
                   <input type="number" name="vægt7" value="" placeholder="Vægt i kg" class="DataHolder">
                   <input type="number" name="reps7" value="" placeholder="Reps" class="DataHolder">
                 </div>
@@ -312,7 +322,7 @@
                   <img src="imges\PlaningIMGS\skull.png" alt="" class="dataIMg">
 
                   <br>
-                  <input type="hidden" name="exname8" value="Hammer Curls" class="inv">
+                  <input type="hidden" name="exname8" value="Skullcrushers" class="inv">
                   <input type="number" name="vægt8" value="" placeholder="Vægt i kg" class="DataHolder">
                   <input type="number" name="reps8" value="" placeholder="Reps" class="DataHolder">
                 </div>
@@ -332,7 +342,7 @@
                   <img src="imges\PlaningIMGS\bb-curl.png" alt="" class="dataIMg">
 
                   <br>
-                  <input type="hidden" name="exname9" value="Hammer Curls" class="inv">
+                  <input type="hidden" name="exname9" value="Barbell Curl" class="inv">
                   <input type="number" name="vægt9" value="" placeholder="Vægt i kg" class="DataHolder">
                   <input type="number" name="reps9" value="" placeholder="Reps" class="DataHolder">
                 </div>
@@ -349,7 +359,7 @@
                   <img src="imges\PlaningIMGS\Cable+Triceps+Rope+Pushdowns.png" alt="" class="dataIMg">
 
                   <br>
-                  <input type="hidden" name="exname10" value="Hammer Curls" class="inv">
+                  <input type="hidden" name="exname10" value="Cable Triceps Rope Pushdowns" class="inv">
                   <input type="number" name="vægt10" value="" placeholder="Vægt i kg" class="DataHolder">
                   <input type="number" name="reps10" value="" placeholder="Reps" class="DataHolder">
                 </div>
@@ -385,7 +395,7 @@
                   <img src="imges\PlaningIMGS\skull.png" alt="" class="dataIMg">
 
                   <br>
-                  <input type="hidden" name="exname12" value="Hammer Curls" class="inv">
+                  <input type="hidden" name="exname12" value="Skullcrushers" class="inv">
                   <input type="number" name="vægt12" value="" placeholder="Vægt i kg" class="DataHolder">
                   <input type="number" name="reps12" value="" placeholder="Reps" class="DataHolder">
                 </div>
