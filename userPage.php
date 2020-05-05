@@ -20,6 +20,7 @@
     <meta charset="utf-8">
     <title>workoutHp - Login</title>
     <link rel="stylesheet" href="style.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@2.9.3/dist/Chart.min.js"></script>
   </head>
 
   <body>
@@ -129,44 +130,6 @@
 
           </div>
 
-
-          <div class="boxes">
-            <div class="numberName">
-              1: Barbell Curl
-            </div>
-
-            <img src="imges\PlaningIMGS\bb-curl.png" alt="" class="dataIMg">
-
-          </div>
-
-          <div class="boxes">
-            <div class="numberName">
-              2: Cable Triceps Rope Pushdowns
-            </div>
-
-            <img src="imges\PlaningIMGS\Cable+Triceps+Rope+Pushdowns.png" alt="" class="dataIMg">
-
-          </div>
-
-
-          <div class="boxes">
-            <div class="numberName">
-              3: Hammer Curls
-            </div>
-
-            <img src="imges\PlaningIMGS\Hammer.png" alt="" class="dataIMg">
-
-          </div>
-
-
-          <div class="boxes">
-            <div class="numberName">
-              4: Skullcrushers
-            </div>
-
-            <img src="imges\PlaningIMGS\skull.png" alt="" class="dataIMg">
-
-          </div>
         </div>
       </div>
 
