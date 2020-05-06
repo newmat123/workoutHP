@@ -106,6 +106,8 @@
 
       default:
         document.getElementById('scheduelContainer').style.display = "none";
+        alert('nothing is on your schedual, you got a rest day');
+        Home();
         break;
     }
   }

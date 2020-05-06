@@ -400,16 +400,9 @@
                   <input type="number" name="reps12" value="" placeholder="Reps" class="DataHolder">
                 </div>
               </div>
-              <button id="saveData" type="submit" name="saveData" class="goB">Save data</button>
-            </form>
-            <!--
-              <button id="saveData" type="submit" name="saveData" class="goB">Save data</button>
 
-              <div class="goB" onclick="Home()">
-                Save data
-              </div>
+              <button id="saveData" type="submit" name="saveData" class="goB">Save data</button>
             </form>
-              -->
 
           </div>
         </div>

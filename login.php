@@ -74,12 +74,19 @@
 
       <form action="login.php" method="post" class="login">
         <div class="loginHolder">
+
+
           <input type="text" required="required" name="username" value="" placeholder="Enter Username" class="DataHolder">
           <br>
           <input type="password" required="required" name="password" value="" placeholder="Enter password" class="DataHolder">
           <br>
           <button id="loginB" type="submit" name="loginB" class="goB">Login</button>
-          <a href="register.php">Register a new user</a>
+
+
+          <button class="goB"><a href="register.php">Register a new user</a></button>
+
+
+
         </div>
       </form>
 
