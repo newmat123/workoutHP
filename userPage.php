@@ -1,15 +1,26 @@
 <?php
   session_start();
 
+  $name1 = array();
+  $names = array();
+  $reps = array();
+  $kg = array();
+  $date = array();
+
   $userid = $_SESSION['id'];
 
   $db = mysqli_connect('localhost', 'root', '', 'workouthp');
 
-  $check_query = "SELECT * FROM progressdata WHERE userid='$userid'";
-  $result = mysqli_query($db, $check_query);
-  $user = mysqli_fetch_assoc($result);
 
-  //echo $user['reps'];
+  $getdata_query = "SELECT * FROM progressdata WHERE userid='$userid' order by date ASC";
+  $result = mysqli_query($db, $getdata_query);
+
+  while ($row = $result->fetch_assoc()) {
+    array_push($names, $row['exercisename']);
+    array_push($reps, $row['reps']);
+    array_push($kg, $row['kg']);
+    array_push($date, $row['date']);
+  }
 
   $db->close();
 ?>
@@ -45,7 +56,7 @@
 
 
     <div class="column">
-
+      
       <div class="chart_area">
 
         <div class="days" id="fredag">
@@ -57,6 +68,7 @@
             </div>
 
             <img src="imges\PlaningIMGS\Barbell+Deadlifts.png" alt="" class="dataIMg">
+            <canvas id="0" width="2000" height="500" class="myChart"></canvas>
 
           </div>
 
@@ -67,6 +79,7 @@
             </div>
 
             <img src="imges\PlaningIMGS\row.png" alt="" class="dataIMg">
+            <canvas id="1" width="2000" height="500" class="myChart"></canvas>
 
           </div>
 
@@ -77,6 +90,7 @@
             </div>
 
             <img src="imges\PlaningIMGS\bb-curl.png" alt="" class="dataIMg">
+            <canvas id="2" width="2000" height="500" class="myChart"></canvas>
 
           </div>
 
@@ -87,6 +101,7 @@
             </div>
 
             <img src="imges\PlaningIMGS\Hammer.png" alt="" class="dataIMg">
+            <canvas id="3" width="2000" height="500" class="myChart"></canvas>
 
           </div>
 
@@ -97,6 +112,7 @@
             </div>
 
             <img src="imges\PlaningIMGS\Cable+Fly.png" alt="" class="dataIMg">
+            <canvas id="4" width="2000" height="500" class="myChart"></canvas>
 
           </div>
 
@@ -107,6 +123,7 @@
             </div>
 
             <img src="imges\PlaningIMGS\Lying+Machine+Chest+Press.png" alt="" class="dataIMg">
+            <canvas id="5" width="2000" height="500" class="myChart"></canvas>
 
           </div>
 
@@ -117,6 +134,7 @@
             </div>
 
             <img src="imges\PlaningIMGS\Cable+Triceps+Rope+Pushdowns.png" alt="" class="dataIMg">
+            <canvas id="6" width="2000" height="500" class="myChart"></canvas>
 
           </div>
 
@@ -127,6 +145,7 @@
             </div>
 
             <img src="imges\PlaningIMGS\skull.png" alt="" class="dataIMg">
+            <canvas id="7" width="2000" height="500" class="myChart"></canvas>
 
           </div>
 
@@ -134,6 +153,75 @@
       </div>
 
     </div>
+
+    <script>
+
+    var name = <?php echo json_encode($names); ?>;
+    var exNames = name.split(',');
+
+    var reps = <?php echo json_encode($reps); ?>;
+    var kg = <?php echo json_encode($kg); ?>;
+    var date = <?php echo json_encode($date); ?>;
+
+
+    var allExNames = ['Barbell Deadlift','Seated Cable Rows','Barbell Curl','Hammer Curls','Lying cable flyes','Lying Machine Chest Press','Cable Triceps Rope Pushdowns','Skullcrushers','Barbell Curl','Cable Triceps Rope Pushdowns','Hammer Curls','Skullcrushers'];
+
+    for (var i = 0; i < allExNames.length; i++) {
+
+      var indexArr = [];
+
+      for (var j = 0; j < exNames.length; j++) {
+        if(allExNames[i] == exNames[j]){
+          indexArr.push(j);
+        }
+      }
+
+      var dataSetReps = [];
+      var dataSetKg = [];
+      var dataSetDate = [];
+
+      for (var k = 0; k < indexArr.length; k++) {
+        dataSetReps.push(reps[indexArr[k]]);
+        dataSetKg.push(kg[indexArr[k]]);
+        dataSetDate.push(date[indexArr[k]]);
+      }
+
+
+      console.log(indexArr);
+
+      var ctx = document.getElementById(i).getContext('2d');
+
+      var myLineChart = new Chart(ctx, {
+        type: 'line',
+        data: {
+          labels: dataSetDate,
+          datasets: [{
+            label: 'reps',
+            data: dataSetReps,
+
+            borderColor: [
+              'rgba(255, 159, 64, 1)'
+            ],
+            borderWidth: 1
+            },
+            {
+              label: 'kg',
+              data: dataSetKg,
+
+              borderColor: [
+                  'rgba(255, 99, 132, 1)'
+              ],
+              borderWidth: 1
+            }
+          ]
+        }
+      });
+    }
+
+
+
+    </script>
+
   </body>
 </html>
 
