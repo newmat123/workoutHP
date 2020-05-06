@@ -1,20 +1,25 @@
 <?php
+  //starter session
   session_start();
 
+  //opretter de forskellige arrays til senere brug.
   $name1 = array();
   $names = array();
   $reps = array();
   $kg = array();
   $date = array();
 
+  //får fat i brugerens unikke id
   $userid = $_SESSION['id'];
 
+  //opretter forbindelse til databasen
   $db = mysqli_connect('localhost', 'root', '', 'workouthp');
 
-
+  //søger efter alt userens data i databasen sorteret efter date.
   $getdata_query = "SELECT * FROM progressdata WHERE userid='$userid' order by date ASC";
   $result = mysqli_query($db, $getdata_query);
 
+  //gemmer al dataen i de forskellige arrays.
   while ($row = $result->fetch_assoc()) {
     array_push($names, $row['exercisename']);
     array_push($reps, $row['reps']);
@@ -22,6 +27,7 @@
     array_push($date, $row['date']);
   }
 
+  //lukker forbindelsen igen.
   $db->close();
 ?>
 
@@ -56,7 +62,7 @@
 
 
     <div class="column">
-      
+
       <div class="chart_area">
 
         <div class="days" id="fredag">
@@ -156,48 +162,53 @@
 
     <script>
 
+    //henter alle øvelsesnavnene og laver det til en array.
     var name = <?php echo json_encode($names); ?>;
     var exNames = name.split(',');
 
+    //henter den rasterende data fra bagend til front end.
     var reps = <?php echo json_encode($reps); ?>;
     var kg = <?php echo json_encode($kg); ?>;
     var date = <?php echo json_encode($date); ?>;
 
-
+    //en array af alle den øvelses navne der er.
     var allExNames = ['Barbell Deadlift','Seated Cable Rows','Barbell Curl','Hammer Curls','Lying cable flyes','Lying Machine Chest Press','Cable Triceps Rope Pushdowns','Skullcrushers','Barbell Curl','Cable Triceps Rope Pushdowns','Hammer Curls','Skullcrushers'];
 
+    //for hver øvelse:
     for (var i = 0; i < allExNames.length; i++) {
 
+      //bruges til at holde styr på hvor den ralavante data er i de forskellige arrays
       var indexArr = [];
 
+      //finder de relavante index's og gemmer dem.
       for (var j = 0; j < exNames.length; j++) {
         if(allExNames[i] == exNames[j]){
           indexArr.push(j);
         }
       }
 
+      //de endelige dataset, som kun kommer til at inholde den ralavante data for hver øvelse
       var dataSetReps = [];
       var dataSetKg = [];
       var dataSetDate = [];
 
+      //smider den relavante data i.
       for (var k = 0; k < indexArr.length; k++) {
         dataSetReps.push(reps[indexArr[k]]);
         dataSetKg.push(kg[indexArr[k]]);
         dataSetDate.push(date[indexArr[k]]);
       }
 
-
-      console.log(indexArr);
-
+      //dette er fra https://www.chartjs.org/
       var ctx = document.getElementById(i).getContext('2d');
 
       var myLineChart = new Chart(ctx, {
         type: 'line',
         data: {
-          labels: dataSetDate,
+          labels: dataSetDate, //datoerne
           datasets: [{
             label: 'reps',
-            data: dataSetReps,
+            data: dataSetReps, //dataset 1
 
             borderColor: [
               'rgba(255, 159, 64, 1)'
@@ -206,7 +217,7 @@
             },
             {
               label: 'kg',
-              data: dataSetKg,
+              data: dataSetKg, //dataset 2
 
               borderColor: [
                   'rgba(255, 99, 132, 1)'
@@ -218,13 +229,12 @@
       });
     }
 
-
-
     </script>
 
   </body>
 </html>
 
 <?php
+  //inkludere scriptet optionScript.php (bruges til logud knappen).
   include_once 'optionScript.php';
  ?>

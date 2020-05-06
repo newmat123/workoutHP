@@ -15,29 +15,34 @@
     window.location.href = 'userPage.php';
   }
 
-  async function Planing() {
+  function Planing() {
 
+    //fjerner alt fra siden og viderstiller.
     CatHolder.innerHTML="";
     Container.innerHTML="";
     document.getElementById('scheduelContainer').style.display = "none";
     document.getElementById('Home').style.display = "none";
-    openPlaning();
-    
+    openPlaning(); //se planing.php.
+
   }
 
-  //viser de forskellige kategorier
+  //viser de forskellige kategorier.
   async function showCategorys() {
+
+    //fjerner alt fra siden.
     CatHolder.innerHTML="";
     Container.innerHTML="";
     document.getElementById('scheduelContainer').style.display = "none";
     document.getElementById('Home').style.display = "none";
 
+    //finder alle categorier og opstiller dem.
     DataCategorys.results.forEach(cats => {
       const element = document.createElement('div');
       element.setAttribute('class', 'muscelgroups');
-      element.setAttribute('onclick', 'defineMuscle('+cats.id+')');
+      element.setAttribute('onclick', 'defineMuscle('+cats.id+')');//klikker man på den kalder den defineMuscle(id) se procesData.php.
       element.innerHTML = cats.name;
 
+      //tilføjer det til siden.
       CatHolder.appendChild(element);
     });
   }
@@ -45,17 +50,19 @@
 
   async function Home() {
 
+    //fjerner alt fra siden.
     CatHolder.innerHTML="";
     Container.innerHTML="";
     document.getElementById('scheduelContainer').style.display = "none";
-    document.getElementById('Home').style.display = "block";
+    document.getElementById('Home').style.display = "block"; //viser startsiden.
 
+    //er man logget ind, vises en navna.
     if(userId != null){
       var loginDiv = document.getElementById('login');
-      loginDiv.setAttribute('onclick', 'openUserPage()');
+      loginDiv.setAttribute('onclick', 'openUserPage()');//klikker man på den viderstilles man til brugersiden.
       loginDiv.innerHTML = '<img src="imges/login_img.png" alt="" id="img">'+userName;
     }
-    getData();
+    getData();//se fetchDataScript.php
   }
 
   Home();

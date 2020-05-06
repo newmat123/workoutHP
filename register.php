@@ -1,20 +1,21 @@
 <?php
   session_start();
 
-
+  //opretter en array vi kan fylde fejlne i.
   $errors = array();
 
-  // connect til databasen
+  // connecter til databasen.
   $db = mysqli_connect('localhost', 'root', '', 'workouthp');
 
-  // registrer bruger
+  // registrer bruger.
   if (isset($_POST['RegisterB'])) {
-    // modtager alle vadier fra de forskellige inputfields
+
+    // modtager alle vadier fra de forskellige inputfields.
     $username = mysqli_real_escape_string($db, $_POST['username']);
     $password_1 = mysqli_real_escape_string($db, $_POST['password']);
     $password_2 = mysqli_real_escape_string($db, $_POST['cPassword']);
 
-    //tjekker om felterne er tomme og om de to passwords er ens
+    //tjekker om felterne er tomme og om de to passwords er ens.
     if (empty($username)) {
       array_push($errors, "Username is required");
     }
@@ -25,33 +26,36 @@
   	  array_push($errors, "The two passwords do not match");
     }
 
-    // tjekker om brugernavnet er taget
+    // tjekker om brugernavnet er taget.
     $user_check_query = "SELECT * FROM users WHERE username='$username' LIMIT 1";
     $result = mysqli_query($db, $user_check_query);
     $user = mysqli_fetch_assoc($result);
 
-    if ($user) { // if user exists
+    if ($user) { // hvis brugernavnet eksister.
       array_push($errors, "Username already exists");
     }
 
-    // er der ingen fejl. smider vi de nye oplysninger ind i databasen.
+    // er $errors tom. smider vi de nye oplysninger ind i databasen og logger brugeren ind.
     if (count($errors) == 0) {
-    	$password = md5($password_1);//crypterer password før det bliver gemt på databasen
+    	$password = md5($password_1);//crypterer password før det bliver gemt på databasen.
 
-    	$query = "INSERT INTO users (username, password)
-    			  VALUES('$username', '$password')";
+      //opretter den nye bruger i databasen.
+    	$query = "INSERT INTO users (username, password) VALUES('$username', '$password')";
     	mysqli_query($db, $query);
 
-      // skaffer det passende id til den nye bruger
+      // skaffer den nye brugers unikke id.
       $user_check_query = "SELECT * FROM users WHERE username='$username' LIMIT 1";
       $result = mysqli_query($db, $user_check_query);
       $user = mysqli_fetch_assoc($result);
 
+      //gemmer id og username i sessionen.
       $_SESSION['id'] = $user['id'];
     	$_SESSION['username'] = $username;
 
+      //viderstiller brugeren til forsiden.
     	header('location: index.php');
     }
+    //lukker forbindelsen igen.
     $db->close();
   }
 

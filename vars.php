@@ -1,10 +1,6 @@
-<?php
-  //session_start();
-?>
-
 <script type="text/javascript">
 
-  //indeholder alle variabler som benyttes i programmet.
+  //indeholder alle variabler som benyttes i index filen
 
   //de forskellige dataset
   var DataCategorys = null;
@@ -28,16 +24,11 @@
   Container.setAttribute('class', 'container');
   Main.appendChild(Container);
 
-
+  //bruges til at udregne hvilken dag det er.
   const MonthCode = [0,3,3,6,1,4,6,2,5,0,3,5];
 
-  var names = ['me','you'];
-  var passwords = ['me','you'];
-  var isLoggedin = false;
+  //holder styr på om man er logget ind eller ej
   var userId = <?php if(isset($_SESSION['id'])){echo $_SESSION['id'];}else{echo "null";}; ?>;
   var userName = '<?php if(isset($_SESSION['username'])){echo $_SESSION['username'];}else{echo "null";}; ?>';
-
-  console.log(userId);
-
 
 </script>

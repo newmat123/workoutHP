@@ -1,23 +1,27 @@
 <?php
+  //starter session.
   session_start();
-  // connect til databasen
 
+  // connect til databasen.
   $db = mysqli_connect('localhost', 'root', '', 'workouthp');
 
-
+  //tjekker om der klikkes på save data knappen.
   if(isset($_POST['saveData'])){
 
+    //henter de forskellige variabler fra session.
     $userID = $_SESSION['id'];
     $day = $_SESSION['day'];
     $date = $_SESSION['date'];
 
+    //opretter de forskellige arrays som skal holde på den indtastede data.
     $exercisename = array();
     $reps = array();
     $kg = array();
 
     switch ($day) {
 
-      case 1:
+      case 1: //er de mandag.
+        //skuber den indtastede data ind i de forskellige arrays.
         array_push($exercisename, mysqli_real_escape_string($db, $_POST['exname1']));
         array_push($exercisename, mysqli_real_escape_string($db, $_POST['exname2']));
         array_push($exercisename, mysqli_real_escape_string($db, $_POST['exname3']));
@@ -34,7 +38,7 @@
         array_push($kg, mysqli_real_escape_string($db, $_POST['vægt4']));
         break;
 
-      case 3:
+      case 3: //er de onsdag.
         array_push($exercisename, mysqli_real_escape_string($db, $_POST['exname5']));
         array_push($exercisename, mysqli_real_escape_string($db, $_POST['exname6']));
         array_push($exercisename, mysqli_real_escape_string($db, $_POST['exname7']));
@@ -51,7 +55,7 @@
         array_push($kg, mysqli_real_escape_string($db, $_POST['vægt8']));
         break;
 
-      case 5:
+      case 5: //eller fredag.
         array_push($exercisename, mysqli_real_escape_string($db, $_POST['exname9']));
         array_push($exercisename, mysqli_real_escape_string($db, $_POST['exname10']));
         array_push($exercisename, mysqli_real_escape_string($db, $_POST['exname11']));
@@ -70,34 +74,30 @@
 
     }
 
+    //tjekker om dataen allerrede eksisterer i databasen.
     $check_query = "SELECT * FROM progressdata WHERE exercisename='$exercisename[1]' AND date='$date' AND userid='$userID'";
     $result = mysqli_query($db, $check_query);
     $user = mysqli_fetch_assoc($result);
 
-    if ($user) {
+    if ($user) { //findes dataen allerrede ændre vi i den eksisterende data med de nyindtastede informationer.
       for ($i=0; $i < count($exercisename); $i++) {
         $sql = "UPDATE progressdata SET reps='$reps[$i]', kg='$kg[$i]' WHERE exercisename='$exercisename[$i]' AND date='$date' AND userid='$userID'";
         mysqli_query($db, $sql);
       }
     }else {
-      for ($i=0; $i < count($exercisename); $i++) {
-
-        $query = "INSERT INTO progressdata (userid, date, kg, reps, exercisename)
-          VALUES('$userID', '$date', '$kg[$i]', '$reps[$i]', '$exercisename[$i]')";
+      for ($i=0; $i < count($exercisename); $i++) { //ellers opretter vi de nye informationer i databasen.
+        $query = "INSERT INTO progressdata (userid, date, kg, reps, exercisename) VALUES('$userID', '$date', '$kg[$i]', '$reps[$i]', '$exercisename[$i]')";
         mysqli_query($db, $query);
-
       }
     }
 
-
+    //nulstiller de forskellige arrays til senere brug.
     $exercisename = null;
     $reps = null;
     $kg = null;
 
-    //header('location: index.php');
-
+    //lukker databaseforbindelse
     $db->close();
-
   }
 ?>
 
@@ -414,6 +414,7 @@
 
 
 <?php
+  //indkludere de forskellige scripts.
   include_once 'vars.php';
   include_once 'fetchDataScript.php';
   include_once 'procesData.php';

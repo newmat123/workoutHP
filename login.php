@@ -1,19 +1,18 @@
 <?php
+  //starter session
   session_start();
 
-  //Variable til at gemme brugernavnet i tilfælde af, at koden er forkert.
-  $username = "";
-
-  //Checker om brugeren har klikket på login knappen
+  //Checker om brugeren har klikket på login knappen.
   if (isset($_POST['loginB'])) {
-    //Opret database forbindelse
+
+    //Opret database forbindelse.
     $db = new mysqli('localhost', 'root', '', 'workouthp');
 
-    //Hent brugernavn og password fra input-felter og sikre mod sql angreb ved at fjerne speciele tegn og tage højde for serverens charset
+    //Hent brugernavn og password fra input-felterne.
     $username = mysqli_real_escape_string($db, $_POST['username']);
     $password = mysqli_real_escape_string($db, $_POST['password']);
 
-    //Finder bruger ved hjælp af id
+    //Finder bruger ved hjælp af $username.
     $sql = "SELECT * FROM users WHERE username='$username' LIMIT 1";
     $result = $db->query($sql);
 
@@ -21,33 +20,35 @@
       if ($result->num_rows > 0) {
         while($row = $result->fetch_assoc()) {
 
-          //cryptere det givne password og tjækker om det stemmer over ens
+          //cryptere det givne password og tjækker om det stemmer over ens.
           $password = md5($password);
+
+          //tjekker om $password er correkt.
           if ($password === $row['password']){
-            //Opretter session variabler med id og brugernavn
+
+            //gemmer id og brugernavn i session.
             $_SESSION['id'] = $row['id'];
             $_SESSION['username'] = $row['username'];
-            //echo "<script type='text/javascript"."'>alert("."'"."$row['id']"."');</script>";
-            //echo "<script type='text/javascript'>alert('$row["id"]');</script>";
 
-            //Lukker databaseforbindelse
+            //Lukker databaseforbindelse.
             $db->close();
 
-            //Viderstiller til menuen
+            //Viderstiller til startsiden.
             header('location: index.php');
             exit(0);
           }
           else {
-            //Fejlbesked hvis adgangskoden ikke passer
+            //besked hvis adgangskoden ikke passer.
             echo "<script type='text/javascript'>alert('Password does not match');</script>";
           }
         }
       }
       else{
-        //Fejlbesked hvis brugernavnet ikke passer
+        //besked hvis brugernavnet ikke passer.
         echo "<script type='text/javascript'>alert('Username is invalid');</script>";
       }
     }
+    //Lukker databaseforbindelse.
     $db->close();
   }
 ?>
@@ -69,7 +70,6 @@
 
     </div>
 
-
     <div class="column">
 
       <form action="login.php" method="post" class="login">
@@ -85,11 +85,10 @@
 
           <button class="goB"><a href="register.php">Register a new user</a></button>
 
-
-
         </div>
       </form>
 
     </div>
+
   </body>
 </html>
