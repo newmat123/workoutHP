@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Vært: 127.0.0.1
--- Genereringstid: 06. 05 2020 kl. 15:52:46
+-- Genereringstid: 06. 05 2020 kl. 20:56:36
 -- Serverversion: 10.4.11-MariaDB
 -- PHP-version: 7.2.30
 
@@ -69,10 +69,10 @@ INSERT INTO `progressdata` (`id`, `userid`, `date`, `kg`, `reps`, `exercisename`
 (88, 9, '2020-05-08', 1, 1, 'Cable Triceps Rope Pushdowns'),
 (89, 9, '2020-05-08', 1, 1, 'Hammer Curls'),
 (90, 9, '2020-05-08', 1, 1, 'Skullcrushers'),
-(91, 8, '2020-05-25', 1, 1, 'Barbell Deadlift'),
-(92, 8, '2020-05-25', 1, 1, 'Seated Cable Rows'),
-(93, 8, '2020-05-25', 1, 1, 'Barbell Curl'),
-(94, 8, '2020-05-25', 1, 1, 'Hammer Curls'),
+(91, 8, '2020-05-25', 35, 15, 'Barbell Deadlift'),
+(92, 8, '2020-05-25', 40, 12, 'Seated Cable Rows'),
+(93, 8, '2020-05-25', 20, 15, 'Barbell Curl'),
+(94, 8, '2020-05-25', 30, 15, 'Hammer Curls'),
 (95, 8, '2020-05-06', 5, 5, 'Lying cable flyes'),
 (96, 8, '2020-05-06', 4, 5, 'Lying Machine Chest Press'),
 (97, 8, '2020-05-06', 4, 5, 'Cable Triceps Rope Pushdowns'),
@@ -105,7 +105,8 @@ CREATE TABLE `users` (
 
 INSERT INTO `users` (`id`, `username`, `password`, `date`) VALUES
 (8, 'test1', '5a105e8b9d40e1329780d62ea2265d8a', '2020-05-05 18:27:57'),
-(9, 'test2', 'ad0234829205b9033196ba818f7a872b', '2020-05-05 20:07:08');
+(9, 'test2', 'ad0234829205b9033196ba818f7a872b', '2020-05-05 20:07:08'),
+(10, 'j', '363b122c528f54df4a0446b6bab05515', '2020-05-06 17:26:01');
 
 --
 -- Begrænsninger for dumpede tabeller
@@ -137,7 +138,7 @@ ALTER TABLE `progressdata`
 -- Tilføj AUTO_INCREMENT i tabel `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
