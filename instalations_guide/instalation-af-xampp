@@ -1,7 +1,7 @@
 For at komme igang bedes du hente xampp - Hent det her:
 https://www.apachefriends.org/download.html
 
-Download version 7.2.30 af xampp til den ønskede platform.
+Download version 7.4.5 af xampp.
 
 
 
@@ -9,9 +9,10 @@ Selve hjemmesiden------------------------------------------------
 
 Åben 'xampp' mappen --> åben 'htdocs' mappen.
 
-Slet alt det er i 'htdocs' mappen.
+Slet alt der er i 'htdocs' mappen.
 
 Flyt projektmappen 'workoutHP' ind i 'htdocs' mappen.
+
 
 
 Databasen-------------------------------------------------------
@@ -30,7 +31,7 @@ Navngiv databasen 'workouthp' og klik på 'opret'.
 
 Klik på 'Importer'. (Findes i toppen, til højre for Eksportér)
 
-Klik på 'Gennemse/Vælg fil', og lokaliser 'workouthp.sql' (Som ligger i workouthp mappen som du var i - installations guide).
+Klik på 'Gennemse/Vælg fil', og lokaliser 'workouthp.sql' (Som ligger i workoutHP -> installations_guide).
 
 Klik på 'Udfør'.
 
