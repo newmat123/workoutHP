@@ -1,0 +1,58 @@
+hent xampp her:
+https://www.apachefriends.org/download.html
+
+download version 7.2.30 af xampp.
+
+
+
+selve hjemmesiden------------------------------------------------
+
+åben 'xampp' mappen --> åben 'htdocs' mappen.
+
+slet alt det er i 'htdocs' mappen.
+
+smid projektmappen 'workoutHP' ind i 'htdocs' mappen.
+
+
+
+
+databasen-------------------------------------------------------
+
+åben 'xampp' mappen.
+
+rul ned i bunden, og åben 'xampp-control'.
+
+klik på 'Start' udfra 'Apache' og 'MySQL'.
+
+klik derefter på 'Admin' udfra 'MySQL'.
+
+klik på ny. (over til venstre)
+
+navngiv databasen 'workouthp' og klik på 'opret'.
+
+klik på 'Importer'.
+
+klik på 'Vælg fil', og lokaliser 'workouthp.sql' (ligger i denne mappe).
+
+klik på 'Udfør'.
+
+
+
+åben hjemmesiden----------------------------------------------
+
+åben xampp kontrolpanelet igen, og klik på ‘Admin’ udfra 'Apache'. ('MySQL' og 'Apache' skal være startet).
+
+klik på 'workoutHP' mappen.
+
+hjemmesiden skulle være klar til brug nu.
+
+
+
+tilgå testdata via:
+
+brugernavne     password
+-------------------------
+test1           test1
+-------------------------
+test2           test2
+-------------------------
