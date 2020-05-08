@@ -20,7 +20,7 @@
 
     switch ($day) {
 
-      case 1: //er de mandag.
+      case 1: //er det mandag.
         //skuber den indtastede data ind i de forskellige arrays.
         array_push($exercisename, mysqli_real_escape_string($db, $_POST['exname1']));
         array_push($exercisename, mysqli_real_escape_string($db, $_POST['exname2']));
@@ -38,7 +38,7 @@
         array_push($kg, mysqli_real_escape_string($db, $_POST['vægt4']));
         break;
 
-      case 3: //er de onsdag.
+      case 3: //er det onsdag.
         array_push($exercisename, mysqli_real_escape_string($db, $_POST['exname5']));
         array_push($exercisename, mysqli_real_escape_string($db, $_POST['exname6']));
         array_push($exercisename, mysqli_real_escape_string($db, $_POST['exname7']));
