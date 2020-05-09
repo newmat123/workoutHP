@@ -33,7 +33,7 @@
             //Lukker databaseforbindelse.
             $db->close();
 
-            //Viderstiller til startsiden.
+            //Viderestiller til startsiden.
             header('location: index.php');
             exit(0);
           }

@@ -2,16 +2,16 @@
 
   //indeholder alle variabler som benyttes i index filen
 
-  //de forskellige dataset
+  //de forskellige datasæt
   var DataCategorys = null;
   var DataExsesice = null;
   var DataImg = null;
   var DataInfo = null;
 
-  //rooten af apien
+  //rooten af api'en
   const Url = 'https://wger.de/api/v2/';
 
-  //muskel gruppen brugeren kigger på
+  //muskelgruppen brugeren kigger på
   var MuscleGroup;
 
 

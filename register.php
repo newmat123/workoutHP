@@ -1,7 +1,7 @@
 <?php
   session_start();
 
-  //opretter en array vi kan fylde fejlne i.
+  //opretter en array vi kan fylde fejlene i.
   $errors = array();
 
   // connecter til databasen.
@@ -31,7 +31,7 @@
     $result = mysqli_query($db, $user_check_query);
     $user = mysqli_fetch_assoc($result);
 
-    if ($user) { // hvis brugernavnet eksister.
+    if ($user) { // hvis brugernavnet eksisterer.
       array_push($errors, "Username already exists");
     }
 
@@ -52,7 +52,7 @@
       $_SESSION['id'] = $user['id'];
     	$_SESSION['username'] = $username;
 
-      //viderstiller brugeren til forsiden.
+      //viderestiller brugeren til forsiden.
     	header('location: index.php');
     }
     //lukker forbindelsen igen.

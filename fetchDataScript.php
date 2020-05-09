@@ -1,6 +1,6 @@
 <script type="text/javascript">
 
-  //henter al dataen fra apien og gemmer dataen.
+  //henter al dataen fra api'en og gemmer dataen.
 
   async function fetchApi(url) {
     //henter data

@@ -1,11 +1,11 @@
 <script type="text/javascript">
 
-  //beerbejder dataen og fremviser den for brugen.
+  //bearbejder dataen og fremviser den for brugen.
 
-  //modtager dataen og danner kortne derefter.
+  //modtager dataen og danner kortene derefter.
   function createCard(name, description, image, id) {
 
-    //indeholder de forskelige html tags som bruges i kortne.
+    //indeholder de forskellige html tags som bruges i kortene.
     var element = ['div','h1','p','div'];
     var arr = [];
 
@@ -52,7 +52,7 @@
   }
 
 
-  //berbejder dataen.
+  //bearbejder dataen.
   async function processApi() {
 
     //venter på data hvis den ikke er hentet.
@@ -64,7 +64,7 @@
     //looper gennem alle resultaterne
     DataExsesice.results.forEach(exsersice => {
 
-      //tjækker om der er fyld på, om det er den rigtige kattegori
+      //tjekker om der er fyld på, om det er den rigtige kategori
       if(exsersice.description != "" && exsersice.category == MuscleGroup){
         var imgs = [];
 
@@ -75,7 +75,7 @@
           }
         });
 
-        //kalder funktionen som danner kortne og vidergiver dataen.
+        //kalder funktionen som danner kortene og videregiver dataen.
         createCard(exsersice.name_original, exsersice.description, imgs, exsersice.id);
       }
     });
@@ -107,7 +107,7 @@
           }
         });
 
-        //tjekker efter info og gemmer det der er ralevant.
+        //tjekker efter info og gemmer det der er relevant.
         DataInfo.results.forEach(infos => {
           if(infos.name == exsersice.name){
 
@@ -118,7 +118,7 @@
           }
         });
 
-        //indeholder de forskelige html tags skal bruges.
+        //indeholder de forskellige html tags skal bruges.
         var element = ['div','h1','p','p','p','p','p','p','p'];
         var arr = [];
 
@@ -127,7 +127,7 @@
           arr.push(document.createElement(element[i]));
         }
 
-        //sætter clase navm og description.
+        //sætter clase navn og description.
         arr[0].setAttribute('class', 'card special');
         arr[1].innerHTML = exsersice.name;
         arr[2].innerHTML = exsersice.description;

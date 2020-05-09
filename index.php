@@ -131,7 +131,7 @@
       </div>
 
       <div class="option" onclick="Planing()">
-        Planing
+        Planning
       </div>
 
       <div class="option" onclick="openlogin()" id="login">

@@ -10,7 +10,7 @@
     //tjekker om man er logget ind.
     if(userId  != null){
 
-      //-------------------------------finder den gældene dato
+      //-------------------------------finder den gældende dato
       var date = new Date;
 
       var day = date.getDate(),
@@ -27,7 +27,7 @@
       var today = year + "-" + month + "-" + day;
       //---------------------------------------------hertil.
 
-      //danner det html, som holder datomenuen.
+      //danner det html, som holder dato menuen.
       const holder = document.createElement('div');
       holder.setAttribute("class", "container");
       holder.setAttribute("id", "dateContainer");
@@ -40,7 +40,7 @@
       document.getElementById('date').value = today;
     }else {
 
-      //er man ikke det bliver man smidt til logind siden.
+      //er man ikke det bliver man smidt til login siden.
       openlogin();
     }
   }
@@ -49,13 +49,13 @@
 
   function getYearCode(date) {
 
-    //i det her tildfælde (2021-05-05) er yy 21.
+    //i det her tilfælde  (2021-05-05) er yy 21.
     var yy = date.slice(2, 4)
 
     //beregner code med formlen.
     var code = (yy+(yy / 4)) % 7;
 
-    //retunere code
+    //returner code
     return code;
   }
 
@@ -83,7 +83,7 @@
 
     var centuryCode = 6;
     var dateNumber = chosenDate.slice(8, 10);
-    //mattematikken er taget herfra.
+    //matematikken er taget herfra.
     //https://artofmemory.com/blog/how-to-calculate-the-day-of-the-week-4203.html
 
 
@@ -92,7 +92,7 @@
       //console.log(data);
     });
 
-    //viser helle skemaet.
+    //viser hele skemaet.
     document.getElementById('scheduelContainer').style.display = "block";
 
     switch (day) {
@@ -125,7 +125,7 @@
         //at han/hun ikke skal lave noget den givne dag.
         document.getElementById('scheduelContainer').style.display = "none";
         alert('nothing is on your schedual, you got a rest day');
-        Home();//viderstiller tilbage til forsiden.
+        Home();//viderestiller tilbage til forsiden.
         break;
     }
   }

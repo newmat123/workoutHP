@@ -162,11 +162,11 @@
 
     <script>
 
-    //henter alle øvelsesnavnene og laver det til en array.
+    //henter alle øvelses navnene og laver det til en array.
     var name = <?php echo json_encode($names); ?>;
     var exNames = name.split(',');
 
-    //henter den rasterende data fra bagend til front end.
+    //henter den resterende data fra bagend til front end.
     var reps = <?php echo json_encode($reps); ?>;
     var kg = <?php echo json_encode($kg); ?>;
     var date = <?php echo json_encode($date); ?>;
@@ -177,22 +177,22 @@
     //for hver øvelse:
     for (var i = 0; i < allExNames.length; i++) {
 
-      //bruges til at holde styr på hvor den ralavante data er i de forskellige arrays
+      //bruges til at holde styr på hvor den relevante data er i de forskellige arrays
       var indexArr = [];
 
-      //finder de relavante index's og gemmer dem.
+      //finder de relevante index og gemmer dem.
       for (var j = 0; j < exNames.length; j++) {
         if(allExNames[i] == exNames[j]){
           indexArr.push(j);
         }
       }
 
-      //de endelige dataset, som kun kommer til at inholde den ralavante data for hver øvelse
+      //de endelige datasæt, som kun kommer til at indeholde den relevante data for hver øvelse
       var dataSetReps = [];
       var dataSetKg = [];
       var dataSetDate = [];
 
-      //smider den relavante data i.
+      //smider den relevante  data i.
       for (var k = 0; k < indexArr.length; k++) {
         dataSetReps.push(reps[indexArr[k]]);
         dataSetKg.push(kg[indexArr[k]]);
@@ -235,6 +235,6 @@
 </html>
 
 <?php
-  //inkludere scriptet optionScript.php (bruges til logud knappen).
+  //inkludere scriptet optionScript.php (bruges til log ud knappen).
   include_once 'optionScript.php';
  ?>

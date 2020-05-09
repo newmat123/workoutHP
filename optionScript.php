@@ -17,7 +17,7 @@
 
   function Planing() {
 
-    //fjerner alt fra siden og viderstiller.
+    //fjerner alt fra siden og viderestiller.
     CatHolder.innerHTML="";
     Container.innerHTML="";
     document.getElementById('scheduelContainer').style.display = "none";
@@ -56,10 +56,10 @@
     document.getElementById('scheduelContainer').style.display = "none";
     document.getElementById('Home').style.display = "block"; //viser startsiden.
 
-    //er man logget ind, vises en navna.
+    //er man logget ind, vises en navn.
     if(userId != null){
       var loginDiv = document.getElementById('login');
-      loginDiv.setAttribute('onclick', 'openUserPage()');//klikker man på den viderstilles man til brugersiden.
+      loginDiv.setAttribute('onclick', 'openUserPage()');//klikker man på den viderestilles man til brugersiden.
       loginDiv.innerHTML = '<img src="imges/login_img.png" alt="" id="img">'+userName;
     }
     getData();//se fetchDataScript.php
