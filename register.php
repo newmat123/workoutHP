@@ -66,7 +66,7 @@
 <html lang="en" dir="ltr">
   <head>
     <meta charset="utf-8">
-    <title>workoutHp - Login</title>
+    <title>workoutHp - Register</title>
     <link rel="stylesheet" href="style.css">
   </head>
 

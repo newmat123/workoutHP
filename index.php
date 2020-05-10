@@ -107,7 +107,7 @@
 
   <head>
     <meta charset="utf-8">
-    <title>Home</title>
+    <title>workoutHp</title>
     <link rel="stylesheet" href="style.css">
   </head>
 
